@@ -1,0 +1,6 @@
+MokaGame/obj/Debug/*
+MokaGame/bin/Debug/*
+*.exe
+*.o
+*.save
+*.log 

@@ -1,0 +1,9 @@
+PROJEKT MOKA 
+
+TODO:
+1. FIZYKA http://www.toptal.com/game/video-game-physics-part-ii-collision-detection-for-solid-objects
+
+
+1 Spis bibliotek 
+
+freetype: http://gnuwin32.sourceforge.net/packages/freetype.htm

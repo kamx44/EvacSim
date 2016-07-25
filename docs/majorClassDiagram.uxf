@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>568</x>
+      <y>192</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>ENGINE
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#init(): int
+#main(): int
+--
+Main class responsible for 
+maintaining all game modules 
+and sheduling...
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>680</x>
+      <y>0</y>
+      <w>192</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Obecnie main.cpp i renderer?
+nie ma w sumie klasy nadzorującej
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>704</x>
+      <y>72</y>
+      <w>48</w>
+      <h>136</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>40.0;150.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>512</x>
+      <y>480</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>GRAPHICS ENGINE
+--
+#init(): int
+#drawAll(): int
+--
+The class responsible for
+scheduling rendering, keeping
+graphical objects
+
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>480</x>
+      <y>0</y>
+      <w>192</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>Diagram jest poglądowy, zawiera 
+jedynie przybliżony obraz całości
+czerwone komentarze z biegiem 
+czasu nalezy usunac
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>592</x>
+      <y>336</y>
+      <w>80</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>472</y>
+      <w>168</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>PHYSICS ENGINE
+--
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>480</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>RENDERER
+--
+#drawObj(): int
+#drawAnim(): int
+#drawParticularEffect(): int
+--
+OPENG GL CALLs
+SHADERING 
+PARTICULAR
+
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>560</y>
+      <w>72</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>808</x>
+      <y>600</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>Opiekun: morf
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>184</x>
+      <y>336</y>
+      <w>24</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;170.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>192</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>WORLD
+--
+#init(): int
+#drawAll(): int
+--
+Main class responsible for
+scheduling rendering, keeping
+graphical objects
+
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>272</y>
+      <w>304</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>360.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>312</x>
+      <y>0</y>
+      <w>160</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>Obecnie na sztywno BOX2D
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>24</y>
+      <w>200</w>
+      <h>464</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>230.0;10.0;60.0;300.0;60.0;560.0;10.0;560.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>136</x>
+      <y>704</y>
+      <w>616</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>RESOURCE MENAGER
+--
+Files provideing 
+
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>352</x>
+      <y>320</y>
+      <w>168</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>OBJECTS
+--
+bg=yellow</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>336</y>
+      <w>88</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>984</x>
+      <y>32</y>
+      <w>168</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Package::FatClass
+{Some Properties}
+--
+-id: Long
+_-ClassAttribute: Long_
+--
+#Operation(i: int): int
+/+AbstractOperation()/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>488</x>
+      <y>408</y>
+      <w>88</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;90.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>408</y>
+      <w>152</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>170.0;10.0;170.0;130.0;10.0;130.0</additional_attributes>
+  </element>
+</diagram>

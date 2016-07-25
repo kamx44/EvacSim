@@ -1,0 +1,18 @@
+Ważne porady!
+
+Dla początkujących:
+
+http://git-scm.com/documentation			- książka GIT (Aby zacząć wystarczy przeczytać rozdziały 1-5)
+	PL: https://git-scm.com/book/pl/v1/Pierwsze-kroki
+http://ndpsoftware.com/git-cheatsheet.html 	- interaktywny cheatsheet dla lepszego zrozumienia tego wszystkiego.
+	
+
+
+Odśledzanie - po aktualizacji .gitignore
+	plik .gitignore zawiera listę nieśledzonych plików tj. takich co na repo ich nie powinno być np. binarki, pliki obiektowe, logi bibliotek...
+	czasami dochodzą nowe pliki, które trzeba wywalić, aby je usunąć raz na zawsze po aktualizacji .gitignora nalezy wykonać:
+
+		git rm -r --cached .
+		git add .
+		git commit -m "fixed untracked files"
+	

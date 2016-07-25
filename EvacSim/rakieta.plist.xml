@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created with http://www.physicseditor.de -->
+<bodydef version="1.0">
+	<bodies>
+
+		<body name="rakieta2">
+            <anchorpoint>0.0000,0.0000</anchorpoint>
+			<fixtures>
+
+				<fixture>
+					<density>2</density>
+					<friction>0.3</friction>
+					<restitution>0</restitution>
+					<filter_categoryBits>1</filter_categoryBits>
+					<filter_groupIndex>0</filter_groupIndex>
+					<filter_maskBits>65535</filter_maskBits>
+					<fixture_type>POLYGON</fixture_type>
+
+
+					<polygons>
+
+                        <polygon>  63.0000, 0.0000  ,  63.0000, 13.0000  ,  57.0000, 14.0000  ,  49.0000, 14.0000  ,  29.0000, 11.0000  ,  33.0000, 3.0000  ,  52.0000, 0.0000 </polygon>
+
+                        <polygon>  1.0000, 9.0000  ,  1.0000, 6.0000  ,  5.0000, 3.0000  ,  33.0000, 3.0000  ,  29.0000, 11.0000  ,  4.0000, 11.0000 </polygon>
+
+					</polygons>
+
+				</fixture>
+
+			</fixtures>
+		</body>
+
+	</bodies>
+	<metadata>
+		<format>1</format>
+		<ptm_ratio>32</ptm_ratio>
+	</metadata>
+</bodydef>
+
+
+

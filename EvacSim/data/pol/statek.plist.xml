@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created with http://www.physicseditor.de -->
+<bodydef version="1.0">
+	<bodies>
+
+		<body name="statek2">
+            <anchorpoint>0.0000,0.0000</anchorpoint>
+			<fixtures>
+
+				<fixture>
+					<density>2</density>
+					<friction>0</friction>
+					<restitution>0</restitution>
+					<filter_categoryBits>1</filter_categoryBits>
+					<filter_groupIndex>0</filter_groupIndex>
+					<filter_maskBits>65535</filter_maskBits>
+					<fixture_type>POLYGON</fixture_type>
+
+
+					<polygons>
+
+                        <polygon>  30.0000, 51.0000  ,  26.0000, 45.0000  ,  26.0000, 38.0000  ,  34.0000, 5.0000  ,  35.0000, 44.0000  ,  33.0000, 48.0000 </polygon>
+
+                        <polygon>  17.0000, 14.0000  ,  22.0000, 13.0000  ,  26.0000, 38.0000  ,  16.0000, 22.0000 </polygon>
+
+                        <polygon>  43.0000, 13.0000  ,  45.0000, 20.0000  ,  37.0000, 35.0000  ,  39.0000, 13.0000 </polygon>
+
+                        <polygon>  24.0000, 7.0000  ,  28.0000, 5.0000  ,  34.0000, 5.0000  ,  26.0000, 38.0000  ,  22.0000, 13.0000 </polygon>
+
+                        <polygon>  36.0000, 6.0000  ,  39.0000, 13.0000  ,  37.0000, 35.0000  ,  35.0000, 38.0000  ,  34.0000, 5.0000 </polygon>
+
+					</polygons>
+
+				</fixture>
+
+			</fixtures>
+		</body>
+
+	</bodies>
+	<metadata>
+		<format>1</format>
+		<ptm_ratio>32</ptm_ratio>
+	</metadata>
+</bodydef>
+
+
+
