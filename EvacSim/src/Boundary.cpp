@@ -4,7 +4,7 @@
 #include "Mmath.h"
 #include "stdio.h"
 
-Boundary::Boundary(World* world) : world_boundary(world)
+Boundary::Boundary()
 {
     idObject = getRandomId();
     //object_type = OBJECT_TYPE::ASTEROIDE;

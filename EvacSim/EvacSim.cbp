@@ -67,9 +67,11 @@
 		<Unit filename="include/Mmath.h" />
 		<Unit filename="include/Module.h" />
 		<Unit filename="include/Object.h" />
+		<Unit filename="include/ObjectsContainer.h" />
 		<Unit filename="include/PolygonGenerator.h" />
 		<Unit filename="include/Renderer.h" />
 		<Unit filename="include/Room.h" />
+		<Unit filename="include/Sector.h" />
 		<Unit filename="include/Ship.h" />
 		<Unit filename="include/Wall.h" />
 		<Unit filename="include/World.h" />
@@ -86,9 +88,11 @@
 		<Unit filename="src/Mmath.cpp" />
 		<Unit filename="src/Module.cpp" />
 		<Unit filename="src/Object.cpp" />
+		<Unit filename="src/ObjectsContainer.cpp" />
 		<Unit filename="src/PolygonGenerator.cpp" />
 		<Unit filename="src/Renderer.cpp" />
 		<Unit filename="src/Room.cpp" />
+		<Unit filename="src/Sector.cpp" />
 		<Unit filename="src/Ship.cpp" />
 		<Unit filename="src/Wall.cpp" />
 		<Unit filename="src/World.cpp" />

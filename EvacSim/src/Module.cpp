@@ -4,9 +4,8 @@
 #include "Mmath.h"
 
 
-Module::Module(Object* parent_,World* world_,glm::vec2 position_,b2Vec2* vertices_,int32 size_ )
-    : world_module(world_),
-      size(size_),
+Module::Module(Object* parent_,glm::vec2 position_,b2Vec2* vertices_,int32 size_ )
+    : size(size_),
       parent(parent_)
 {
 
@@ -44,7 +43,7 @@ void Module::calcSpeed()
 void Module::setDamage(float damage)
 {
     parent->hp -= (int)damage;
-    std::cout<<"Dosta³ hita : "<<(int)damage<<" zostalo: "<<parent->hp<<std::endl;
+//    std::cout<<"Dosta³ hita : "<<(int)damage<<" zostalo: "<<parent->hp<<std::endl;
     if(parent->hp<=0)
     {
         parent->isAlive=false;

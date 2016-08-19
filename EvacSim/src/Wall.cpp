@@ -5,7 +5,7 @@
 #include "stdio.h"
 
 
-Wall::Wall(glm::vec2 startPosition,glm::vec2 endPosition, World* world) : world_wall(world)
+Wall::Wall(glm::vec2 startPosition,glm::vec2 endPosition)
 {
     this->startPosition = startPosition;
     this->endPosition = endPosition;
@@ -20,7 +20,7 @@ Wall::Wall(glm::vec2 startPosition,glm::vec2 endPosition, World* world) : world_
     b2EdgeShape shape;
     shape.Set(vertices[0],vertices[1]);
     bodyDef.type = b2_staticBody;
-    bodyDef.position.Set(position[0], position[1]);
+    bodyDef.position.Set(0, 0);
     fixtureDef.shape = &shape;
     fixtureDef.density = 2.0f;
     fixtureDef.friction = 0.3f;
@@ -38,8 +38,8 @@ Wall::~Wall()
 
 void Wall::draw()
 {
-    float x = position[0];
-    float y = position[1];
+    float x = 0;
+    float y = 0;
     glPushMatrix ();
     glLineWidth (5.0f);
     glTranslatef(x,y,0);

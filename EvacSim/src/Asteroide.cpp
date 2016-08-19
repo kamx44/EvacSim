@@ -4,11 +4,12 @@
 #include "Mmath.h"
 #include "stdio.h"
 
-Asteroide::Asteroide(World* world) :world_asteroide(world)
+Asteroide::Asteroide(Sector* sector)
 {
     idObject = getRandomId();
     object_type = OBJECT_TYPE::ASTEROIDE;
-    position = getRandomVec2(-10, 10);
+    position = glm::vec2(getRandomInt(sector->getLeftDownCornerX()+2,sector->getLeftDownCornerX()+8),
+                         getRandomInt(sector->getRightUpCornerY()-8,sector->getRightUpCornerY()-2));
     size = 3;
     mass = 10;
     velocity = getRandomVec2(0,1);
@@ -20,7 +21,6 @@ Asteroide::Asteroide(World* world) :world_asteroide(world)
     fixtureDef.shape = &circle;
     fixtureDef.density = 200.0f;
     fixtureDef.friction = 0.3f;
-   // circle.m_p.Set(position[0], position[1]);
     body = World::addToWorld(bodyDef);
     setToWorld();
     setFixtureToBody();
@@ -59,6 +59,6 @@ void Asteroide::update(float dt)
 {
     setParameters(dt);
 
-    b2Vec2 pos = world_asteroide->objectsContainer.at(0)->body->GetPosition();
+    b2Vec2 pos = body->GetPosition();
 
 }

@@ -14132,7 +14132,7 @@
 	"PolygonGenerator.h"
 	<Box2D/Box2D.h>
 
-1468358328 source:d:\inzynierka\evacsim\evacsim\main.cpp
+1470175222 source:d:\inzynierka\evacsim\evacsim\main.cpp
 	"Game.h"
 	"ctime"
 	<iostream>
@@ -14140,7 +14140,7 @@
 1456152020 d:\inzynierka\evacsim\evacsim\include\game.h
 	"World.h"
 
-1469398026 d:\inzynierka\evacsim\evacsim\include\world.h
+1471555656 d:\inzynierka\evacsim\evacsim\include\world.h
 	<vector>
 	"ContactListener.h"
 	"PolygonGenerator.h"
@@ -14317,14 +14317,15 @@
 	<string>
 	<Box2D/Box2D.h>
 
-1469396598 source:d:\inzynierka\evacsim\evacsim\src\asteroide.cpp
+1471553496 source:d:\inzynierka\evacsim\evacsim\src\asteroide.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Asteroide.h"
 	"Mmath.h"
 	"stdio.h"
 
-1468618090 d:\inzynierka\evacsim\evacsim\include\asteroide.h
+1471551825 d:\inzynierka\evacsim\evacsim\include\asteroide.h
+	"Sector.h"
 	"Object.h"
 	"World.h"
 
@@ -14749,7 +14750,7 @@
 	"Asteroide.h"
 	"Object.h"
 
-1468358388 d:\inzynierka\evacsim\evacsim\include\module.h
+1470346487 d:\inzynierka\evacsim\evacsim\include\module.h
 	"World.h"
 	"Object.h"
 
@@ -16220,7 +16221,7 @@
 	<OpenGL/gl.h>
 	<OpenGL/glu.h>
 
-1468356249 d:\inzynierka\evacsim\evacsim\include\renderer.h
+1470256955 d:\inzynierka\evacsim\evacsim\include\renderer.h
 	<GL/gl.h>
 	<GL/glu.h>
 	<SDL2/SDL.h>
@@ -16235,6 +16236,7 @@
 	"Object.h"
 	"Image.h"
 	"World.h"
+	"ObjectsContainer.h"
 
 1394257193 d:\inzynierka\evacsim\dependencies\include\sdl2\sdl_opengl.h
 	"SDL_config.h"
@@ -16261,7 +16263,7 @@
 1456152020 d:\inzynierka\evacsim\evacsim\include\polygony.h
 	<math.h>
 
-1456152020 d:\inzynierka\evacsim\evacsim\include\ship.h
+1470256824 d:\inzynierka\evacsim\evacsim\include\ship.h
 	"Module.h"
 	"glm/common.hpp"
 	"PolygonGenerator.h"
@@ -16378,7 +16380,7 @@
 	<glm/glm.hpp>
 	<Box2D/Box2D.h>
 
-1469396598 source:d:\inzynierka\evacsim\evacsim\src\module.cpp
+1470764065 source:d:\inzynierka\evacsim\evacsim\src\module.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Module.h"
@@ -16417,18 +16419,18 @@
 
 1456152020 d:\inzynierka\evacsim\evacsim\include\randomworld.h
 
-1468617136 source:d:\inzynierka\evacsim\evacsim\src\renderer.cpp
+1470256900 source:d:\inzynierka\evacsim\evacsim\src\renderer.cpp
 	"Renderer.h"
 	"Camera.h"
 
-1469396759 source:d:\inzynierka\evacsim\evacsim\src\ship.cpp
+1470346925 source:d:\inzynierka\evacsim\evacsim\src\ship.cpp
 	"Ship.h"
 	"Renderer.h"
 	"Events.h"
 	"Mmath.h"
 	<Box2D/Box2D.h>
 
-1469398488 source:d:\inzynierka\evacsim\evacsim\src\world.cpp
+1471555637 source:d:\inzynierka\evacsim\evacsim\src\world.cpp
 	"World.h"
 	"Object.h"
 	"Renderer.h"
@@ -16437,41 +16439,68 @@
 	"PolygonGenerator.h"
 	"Asteroide.h"
 	"Boundary.h"
-	"Wall.h"
+	"Sector.h"
+	"Building.h"
 	<Box2D/Box2D.h>
 
 1456152020 source:d:\inzynierka\evacsim\evacsim\src\worldmesh.cpp
 	"WorldMesh.h"
 
-1469396598 source:d:\inzynierka\evacsim\evacsim\src\boundary.cpp
+1470346227 source:d:\inzynierka\evacsim\evacsim\src\boundary.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Boundary.h"
 	"Mmath.h"
 	"stdio.h"
 
-1468668911 d:\inzynierka\evacsim\evacsim\include\boundary.h
+1470346227 d:\inzynierka\evacsim\evacsim\include\boundary.h
 	"Object.h"
 	"World.h"
 
-1468874459 source:d:\inzynierka\evacsim\evacsim\src\building.cpp
+1471555727 source:d:\inzynierka\evacsim\evacsim\src\building.cpp
+	<glm/glm.hpp>
+	<glm/detail/type_mat2x2.hpp>
 	"Building.h"
+	"Room.h"
+	<vector>
 
-1468874459 d:\inzynierka\evacsim\evacsim\include\building.h
-
-1468875416 source:d:\inzynierka\evacsim\evacsim\src\room.cpp
+1471551967 d:\inzynierka\evacsim\evacsim\include\building.h
 	"Room.h"
 
-1468875416 d:\inzynierka\evacsim\evacsim\include\room.h
+1471553246 source:d:\inzynierka\evacsim\evacsim\src\room.cpp
+	"Room.h"
+	"Wall.h"
+	"ObjectsContainer.h"
+	"Sector.h"
+	<iostream>
 
-1469396598 source:d:\inzynierka\evacsim\evacsim\src\wall.cpp
+1471552042 d:\inzynierka\evacsim\evacsim\include\room.h
+	<GL/gl.h>
+	<glm/glm.hpp>
+	<vector>
+	"Sector.h"
+
+1469655950 source:d:\inzynierka\evacsim\evacsim\src\wall.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Wall.h"
 	"Mmath.h"
 	"stdio.h"
 
-1469392993 d:\inzynierka\evacsim\evacsim\include\wall.h
+1469655949 d:\inzynierka\evacsim\evacsim\include\wall.h
 	"Object.h"
 	"World.h"
+
+1471551926 source:d:\inzynierka\evacsim\evacsim\src\sector.cpp
+	"Sector.h"
+	"iostream"
+
+1471551933 d:\inzynierka\evacsim\evacsim\include\sector.h
+	<glm/glm.hpp>
+
+1470256575 d:\inzynierka\evacsim\evacsim\include\objectscontainer.h
+	"Object.h"
+
+1470256854 source:d:\inzynierka\evacsim\evacsim\src\objectscontainer.cpp
+	"ObjectsContainer.h"
 

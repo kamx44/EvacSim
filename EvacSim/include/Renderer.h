@@ -25,6 +25,7 @@
 #include "Object.h"
 #include "Image.h"
 #include "World.h"
+#include "ObjectsContainer.h"
 
 
 
@@ -67,7 +68,7 @@ public:
     void DrawQuadTexture(float x, float y, float w, float h, unsigned int texture_id);
     void DrawQuadTexture(float x, float y, float w, float h,float angle, unsigned int texture_id);
     void drawPoint(float x, float y);
-    void setObjectsContainer(std::vector<Object*> *objContainer);
+    void setObjectsContainer(ObjectsContainer *objContainer);
     Image statek;
 
 
@@ -88,7 +89,7 @@ private:
     SDL_GLContext glcontext;
 
 
-    std::vector<Object*> *objectsContainer;
+    ObjectsContainer *objectsContainer;
 
 
 };

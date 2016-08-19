@@ -5,10 +5,13 @@
 
 #include "ContactListener.h"
 #include "PolygonGenerator.h"
+//#include "ObjectsContainer.h"
 
 
 
 class Object;
+class ObjectsContainer;
+class Building;
 
 
 class World
@@ -16,19 +19,14 @@ class World
 public:
     World();
     virtual ~World();
-
-
-    std::vector<Object*> objectsContainer;
-    bool playerAlive;
-
+    ObjectsContainer* objectsContainer;
     ContactListener ContactListenerInstance;
     PolygonGenerator polygonGenerator;
-
-    void addToObjectsContainer(Object* object);
-    void delFromObjectsContainer(Object* object);
+    bool playerAlive;
     static b2Body* addToWorld(b2BodyDef& bodyDef);
     void moveAll();
     int startGame();
+    void createActors(int amount,Building* building);
 
    // b2Vec2 gravity;
     static void initializeWorld(){

@@ -6,14 +6,15 @@
 #include "PolygonGenerator.h"
 #include "Asteroide.h"
 #include "Boundary.h"
-#include "Wall.h"
+#include "Sector.h"
+#include "Building.h"
 #include <Box2D/Box2D.h>
 
 using namespace std;
 
 World::World()
 {
-
+    objectsContainer = new ObjectsContainer();
 }
 
 World::~World()
@@ -23,36 +24,7 @@ World::~World()
 
 b2World World::world = b2World(b2Vec2(0.0f,0.0f));
 
-void World::addToObjectsContainer(Object *object)
-{
-    objectsContainer.push_back(object);
-}
 
-
-void World::delFromObjectsContainer(Object *object)
-{
-    for(unsigned int i=0; i<objectsContainer.size(); i++)
-    {
-        if(object==objectsContainer[i])
-        {
-            if(object->isPlayer==true)
-            {
-                object->destroyBody();
-                objectsContainer.clear();
-                object->drawable=false;
-                delete object;
-                playerAlive=false;
-            }
-            else
-            {
-                object->destroyBody();
-                objectsContainer.erase(objectsContainer.begin()+i);
-                object->drawable=false;
-                delete object;
-            }
-        }
-    }
-}
 
 
 int World::startGame()
@@ -63,7 +35,7 @@ int World::startGame()
     Renderer::getInstance();
     Events::getInstance();
     Renderer::getInstance().world=this;
-    Renderer::getInstance().setObjectsContainer(&objectsContainer);
+    Renderer::getInstance().setObjectsContainer(objectsContainer);
     world.SetContactListener(&ContactListenerInstance);
 
 //adding objects
@@ -71,16 +43,20 @@ int World::startGame()
     Ship* statek = new Ship(this);
     // player1->playerShips.push_back(statek);
     // player1->mainShip = statek;
-    addToObjectsContainer(statek);
-    Boundary* boundaries = new Boundary(this);
-  //  addToObjectsContainer(boundaries);
-    Wall* wall = new Wall(glm::vec2(-40,0),glm::vec2(40,0),this);
-    addToObjectsContainer(wall);
-    for(int i=0; i<20; i++)
-    {
-        Asteroide* ast = new Asteroide(this);
-        addToObjectsContainer(ast);
-    }
+    objectsContainer->addObject(statek);
+    Boundary* boundaries = new Boundary();
+    objectsContainer->addObject(boundaries);
+    //void (World::*addToObjectsContainerPointer)(Object*);
+    //addToObjectsContainerPointer = &World::addToObjectsContainer;
+    Building* building = new Building(objectsContainer);
+
+
+
+
+    /*wall = new Wall(glm::vec2(-40,0),glm::vec2(40,0),this);
+    addToObjectsContainer(wall); */
+    createActors(60,building);
+
     int32 velocityIterations = 6;
     int32 positionIterations = 2;
 
@@ -107,15 +83,25 @@ int World::startGame()
 void World::moveAll()
 {
 
-    for(int i=0; i<objectsContainer.size(); i++)
+    for(int i=0; i<objectsContainer->getSize(); i++)
     {
-        if(objectsContainer.at(i)->isAlive==true)
-            objectsContainer.at(i)->update(Renderer::getInstance().ratio);
+        if(objectsContainer->getObjectByIndex(i)->isAlive==true)
+            objectsContainer->getObjectByIndex(i)->update(Renderer::getInstance().ratio);
         else
-            delFromObjectsContainer(objectsContainer.at(i));
+            objectsContainer->deleteObject(objectsContainer->getObjectByIndex(i));
     }
 }
 
 b2Body* World::addToWorld(b2BodyDef& bodyDef){
     return world.CreateBody(&bodyDef); //return pointer to body
+}
+
+void World::createActors(int amount,Building* building){
+    for(int i=0; i<amount; i++)
+    {
+        if(Sector* freeSector = building->getFreeSector()){
+            Asteroide* ast = new Asteroide(freeSector);
+            objectsContainer->addObject(ast);
+        }
+    }
 }

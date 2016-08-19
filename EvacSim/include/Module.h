@@ -9,9 +9,8 @@ class World;
 class Module : public Object
 {
     public:
-        Module(Object* parent_,World* world_,glm::vec2 position_,b2Vec2* vertices_,int32 size_);
+        Module(Object* parent_,glm::vec2 position_,b2Vec2* vertices_,int32 size_);
         ~Module();
-        World* world_module;
         Object* parent;
       int32 size;
       int id;

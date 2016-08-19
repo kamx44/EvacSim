@@ -6,9 +6,8 @@
 class Boundary : public Object
 {
     public:
-        Boundary(World* world);
+        Boundary();
         virtual ~Boundary();
-        World* world_boundary;
         void draw();
         void update(float dt);
     protected:

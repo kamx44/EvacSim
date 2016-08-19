@@ -36,7 +36,7 @@ Renderer::~Renderer()
     SDL_Quit();
 }
 
-void Renderer::setObjectsContainer(std::vector<Object*> *objContainer)
+void Renderer::setObjectsContainer(ObjectsContainer *objContainer)
 {
     objectsContainer = objContainer;
 }
@@ -70,15 +70,15 @@ void Renderer::drawAll()
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);         // Clear The Screen And The Depth Buffer
     glColor4f (1,1,1,1);
     glLoadIdentity();
-    b2Vec2 pos = objectsContainer->at(0)->body->GetPosition();
+    b2Vec2 pos = objectsContainer->getObjectByIndex(0)->body->GetPosition();
     glTranslatef(-pos.x,-pos.y,-30);    //minus variables because bodies position is inverted against to opengl map
     //  glTranslatef(0,0,-30);
     drawAxis(0,0,0);
     glColor3f( 0.0, 1.0, 1.0 );
-    for(int i=0; i<objectsContainer->size(); i++)
+    for(int i=0; i<objectsContainer->getSize(); i++)
     {
-        if(objectsContainer->at(i)->drawable==true)
-            objectsContainer->at(i)->draw();
+        if(objectsContainer->getObjectByIndex(i)->drawable==true)
+            objectsContainer->getObjectByIndex(i)->draw();
     }
     glPopMatrix();
     glColor3f( 0.0, 1.0, 1.0 );

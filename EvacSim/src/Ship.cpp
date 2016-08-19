@@ -31,7 +31,7 @@ Ship::Ship(World* world) :world_ship(world)
     mass = 0;
 
     //shape of ship
-    vector<vector<b2Vec2*>> polCon = world->polygonGenerator.getPolygonContainer("statek.plist.xml");
+    vector<vector<b2Vec2*>> polCon = world_ship->polygonGenerator.getPolygonContainer("statek.plist.xml");
     for(unsigned int i=0; i<polCon.size(); i++)
     {
         vector<b2Vec2*> vert2 = polCon[i];
@@ -43,9 +43,9 @@ Ship::Ship(World* world) :world_ship(world)
             v -= glm::vec2(2.9,2.9);
             mVertices[i]=createB2vec2(v);
         }
-        module = new Module(this,world_ship,glm::vec2(0,0),mVertices,mSize);
+        module = new Module(this,glm::vec2(0,0),mVertices,mSize);
         modules.push_back(module);
-        world_ship->addToObjectsContainer(module);
+     //   world_ship->addToObjectsContainer(module);
         mass+=module->body->GetMass();
         if(i==0)
         {
@@ -66,7 +66,7 @@ void Ship::createJoint(b2Body* bodyB)
     //jointDef.collideConnected=false;
     //jointDef.Initialize(body, bodyB, body->GetWorldCenter());
 
-    //jointWeld = (b2WeldJoint*)world_ship->world.CreateJoint( &jointDef );
+    //jointWeld = (b2WeldJoint*)->world.CreateJoint( &jointDef );
 
 }
 
@@ -78,9 +78,9 @@ void Ship::strzel_rakieta(KIND type)
 
     missle->type=type;
     missle->myID=misID;
-    missle->setToWorld(world_ship->world);
+    missle->setToWorld(->world);
     missle->setFixtureToBody();
-    world_ship->addToObjectsContainer(missle);
+    ->addToObjectsContainer(missle);
 */
 }
 

@@ -7,10 +7,9 @@
 class Wall : public Object
 {
     public:
-        Wall(glm::vec2 startPosition,glm::vec2 endPosition,World* world);
+        Wall(glm::vec2 startPosition,glm::vec2 endPosition);
         glm::vec2 startPosition;
         glm::vec2 endPosition;
-        World* world_wall;
         void update(float dt);
         void draw();
         virtual ~Wall();

@@ -42,7 +42,7 @@ public:
     b2WeldJoint* jointWeld;
     virtual void delObject()
     {
-        world_ship->delFromObjectsContainer(this);
+       // world_ship->delFromObjectsContainer(this);
     }
 
     void createJoint(b2Body* bodyB);
