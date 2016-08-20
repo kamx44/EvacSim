@@ -7,7 +7,7 @@
 Boundary::Boundary()
 {
     idObject = getRandomId();
-    //object_type = OBJECT_TYPE::ASTEROIDE;
+    //object_type = OBJECT_TYPE::ACTOR;
     position = glm::vec2(0,0);
     velocity = glm::vec2(0,0);
     fOrientation = 33;
@@ -24,6 +24,8 @@ Boundary::Boundary()
     fixtureDef.shape = &chain;
     fixtureDef.density = 2.0f;
     fixtureDef.friction = 0.3f;
+    fixtureDef.filter.categoryBits = 0x0004;
+    fixtureDef.filter.maskBits = 0x0002;
    // circle.m_p.Set(position[0], position[1]);
     body = World::addToWorld(bodyDef);
     setToWorld();
@@ -41,11 +43,11 @@ void Boundary::draw()
 {
     float x = position[0];
     float y = position[1];
-    int vc = vertexCount;
+    //int vc = vertexCount;
     float angle = fOrientation;
 
     // tego tu nie ma byæ morf
-    //     world->asteroides[i]->move();
+    //     world->actors[i]->move();
 
 
     glPushMatrix ();
@@ -53,7 +55,7 @@ void Boundary::draw()
     glTranslatef(x,y,-3);
     glRotatef( RADTODEG(angle) , 0, 0, 1 );
     glBegin (GL_POLYGON);
-    glColor3b(0,192,32);
+    glColor3b(GLbyte(0),GLbyte(192),GLbyte(32));
     glVertex3i (-100.0f, -100.0f,0);
     glVertex3i (-100.0f, 100.0f,0);
     glVertex3i (100.0f, 100.0f,0);
@@ -73,7 +75,7 @@ void Boundary::draw()
     glPopMatrix ();
 }
 
-void Boundary::update(float dt)
+void Boundary::update(float )
 {
 
 }

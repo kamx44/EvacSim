@@ -18,12 +18,6 @@ Game::~Game()
 
 void Game::gameOn()
 {
-    int state = 0;
-
-//    Player *pl;
     gameWorld = new World();
     gameWorld->startGame();
-    state = 2;
-
-
 }

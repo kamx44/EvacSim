@@ -4,7 +4,7 @@
 #include "Camera.h"
 #include "Events.h"
 #include "PolygonGenerator.h"
-#include "Asteroide.h"
+#include "Actor.h"
 #include "Boundary.h"
 #include "Sector.h"
 #include "Building.h"
@@ -40,9 +40,9 @@ int World::startGame()
 
 //adding objects
 
-    Ship* statek = new Ship(this);
-    // player1->playerShips.push_back(statek);
-    // player1->mainShip = statek;
+    Cursor* statek = new Cursor();
+    // player1->playerCursors.push_back(statek);
+    // player1->mainCursor = statek;
     objectsContainer->addObject(statek);
     Boundary* boundaries = new Boundary();
     objectsContainer->addObject(boundaries);
@@ -55,7 +55,7 @@ int World::startGame()
 
     /*wall = new Wall(glm::vec2(-40,0),glm::vec2(40,0),this);
     addToObjectsContainer(wall); */
-    createActors(60,building);
+    createActors(10,building);
 
     int32 velocityIterations = 6;
     int32 positionIterations = 2;
@@ -100,7 +100,7 @@ void World::createActors(int amount,Building* building){
     for(int i=0; i<amount; i++)
     {
         if(Sector* freeSector = building->getFreeSector()){
-            Asteroide* ast = new Asteroide(freeSector);
+            Actor* ast = new Actor(freeSector,objectsContainer);
             objectsContainer->addObject(ast);
         }
     }

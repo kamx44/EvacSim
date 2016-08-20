@@ -5,8 +5,8 @@
 
 
 Module::Module(Object* parent_,glm::vec2 position_,b2Vec2* vertices_,int32 size_ )
-    : size(size_),
-      parent(parent_)
+    : parent(parent_),
+      size(size_)
 {
 
     object_type = OBJECT_TYPE::MODULE;

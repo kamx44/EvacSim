@@ -55,11 +55,12 @@
 			<Add directory="../dependencies/dll" />
 			<Add directory="../../../../../MinGW/lib" />
 		</Linker>
-		<Unit filename="include/Asteroide.h" />
+		<Unit filename="include/Actor.h" />
 		<Unit filename="include/Boundary.h" />
 		<Unit filename="include/Building.h" />
 		<Unit filename="include/Camera.h" />
 		<Unit filename="include/ContactListener.h" />
+		<Unit filename="include/Cursor.h" />
 		<Unit filename="include/Events.h" />
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Gauss.h" />
@@ -72,15 +73,16 @@
 		<Unit filename="include/Renderer.h" />
 		<Unit filename="include/Room.h" />
 		<Unit filename="include/Sector.h" />
-		<Unit filename="include/Ship.h" />
+		<Unit filename="include/Sensor.h" />
 		<Unit filename="include/Wall.h" />
 		<Unit filename="include/World.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Asteroide.cpp" />
+		<Unit filename="src/Actor.cpp" />
 		<Unit filename="src/Boundary.cpp" />
 		<Unit filename="src/Building.cpp" />
 		<Unit filename="src/Camera.cpp" />
 		<Unit filename="src/ContactListener.cpp" />
+		<Unit filename="src/Cursor.cpp" />
 		<Unit filename="src/Events.cpp" />
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Gauss.cpp" />
@@ -93,7 +95,7 @@
 		<Unit filename="src/Renderer.cpp" />
 		<Unit filename="src/Room.cpp" />
 		<Unit filename="src/Sector.cpp" />
-		<Unit filename="src/Ship.cpp" />
+		<Unit filename="src/Sensor.cpp" />
 		<Unit filename="src/Wall.cpp" />
 		<Unit filename="src/World.cpp" />
 		<Extensions>

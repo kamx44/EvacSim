@@ -51,7 +51,7 @@ vector<std::vector<b2Vec2*>> PolygonGenerator::getPolygonContainer(string fileNa
             size_t f = napis.find("<polygon>",0);
             if(f!=string::npos)
             {
-                int verticesSize = findComma(napis);
+                //int verticesSize = findComma(napis);
                 std::vector<b2Vec2*> vertices=findVertices(napis);
                 polygon_container.push_back(vertices);
             }
@@ -95,6 +95,7 @@ float PolygonGenerator::findOneNumber(string napis)
             throw("cosik nie tak");
         }
     }
+    return 0;
 }
 
 int PolygonGenerator::findComma(string& napis)

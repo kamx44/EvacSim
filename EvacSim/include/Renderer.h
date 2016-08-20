@@ -20,7 +20,7 @@
 
 
 #define check_gl_error() Renderer::getInstance()._check_gl_error(__FILE__,__LINE__)
-#include "Ship.h"
+#include "Cursor.h"
 
 #include "Object.h"
 #include "Image.h"
@@ -57,7 +57,7 @@ public:
     void _check_gl_error(const char *file, int line);
     int width, height;
 
-    void drawShip ();
+    void drawCursor ();
     void drawMissles ();
     void drawAsteroids();
     void drawModules();

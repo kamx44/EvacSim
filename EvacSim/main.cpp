@@ -18,7 +18,7 @@ void termin()
 
 void (*old_terminate)() = set_terminate(termin);
 
-int main(int argc, char* argv[])
+int main()
 {
 
     try

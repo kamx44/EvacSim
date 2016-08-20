@@ -44,14 +44,14 @@ void Wall::draw()
     glLineWidth (5.0f);
     glTranslatef(x,y,0);
     glBegin (GL_LINES);
-    glColor3b(255,30,30);
+    glColor3b(GLbyte(255),GLbyte(30),GLbyte(30));
     glVertex3i (startPosition.x, startPosition.y,0);
     glVertex3i (endPosition.x, endPosition.y,0);
     glEnd();
     glPopMatrix ();
 }
 
-void Wall::update(float dt)
+void Wall::update(float )
 {
 
 }

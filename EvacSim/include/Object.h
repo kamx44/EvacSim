@@ -11,10 +11,10 @@
 
 enum OBJECT_TYPE
 {
-    ASTEROIDE,
-    SHIP,
+    ACTOR,
+    CURSOR,
     MODULE,
-    MISSLE
+    SENSOR
 };
 
 

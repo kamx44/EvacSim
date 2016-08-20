@@ -29,7 +29,6 @@ void Room::createBoundaries(){
     vertices[0].y = vertices[1].y;
     vertices[2].x = vertices[1].x;
     vertices[2].y = vertices[3].y;
-    bool condition = true;
     int i=0;
     int j=0;
     while(i<4){
@@ -124,6 +123,7 @@ int Room::checkWhichCloser(glm::vec2 point, glm::vec2 escapePointOne, glm::vec2 
         else
             return 2;
     }
+    return 0;
 }
 
 void Room::createSectors(){

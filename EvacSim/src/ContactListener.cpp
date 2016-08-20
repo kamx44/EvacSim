@@ -1,8 +1,7 @@
 
 #include "ContactListener.h"
-#include "Module.h"
-#include "Missle.h"
-#include "Asteroide.h"
+#include "Cursor.h"
+#include "Actor.h"
 #include "Object.h"
 
 
@@ -27,21 +26,19 @@ void ContactListener::BeginContact(b2Contact* contact)
     bContact = true;
     Object* bodyUserDataA = (Object*)contact->GetFixtureA()->GetBody()->GetUserData();
     Object* bodyUserDataB = (Object*)contact->GetFixtureB()->GetBody()->GetUserData();
-    if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::ASTEROIDE && bodyUserDataB->getEntityType()==OBJECT_TYPE::MISSLE))
+   if (bodyUserDataA->getEntityType()==OBJECT_TYPE::CURSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
     {
-        dynamic_cast<Missle*>( bodyUserDataB )->startContact();
-        dynamic_cast<Asteroide*>( bodyUserDataA )->startContact();
-    }
-    else if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::MODULE && bodyUserDataB->getEntityType()==OBJECT_TYPE::ASTEROIDE))
+        dynamic_cast<Cursor*>( bodyUserDataA )->startContact();
+        dynamic_cast<Actor*>( bodyUserDataB )->startContact();
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::SENSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
     {
-        dynamic_cast<Module*>( bodyUserDataA )->startContact();
-        dynamic_cast<Asteroide*>( bodyUserDataB )->startContact();
-
+        dynamic_cast<Sensor*>( bodyUserDataA )->startContact();
+        dynamic_cast<Actor*>( bodyUserDataB )->startContact();
     }
-    else if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::MODULE && bodyUserDataB->getEntityType()==OBJECT_TYPE::MODULE))
+   /* else if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::CURSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::CURSOR))
     {
         //     std::cout<<"KUIRWAAA"<<std::endl;
-    }
+    } */
 }
 
 void ContactListener::EndContact(b2Contact* contact)
@@ -51,28 +48,27 @@ void ContactListener::EndContact(b2Contact* contact)
     Object* bodyUserDataA = (Object*)contact->GetFixtureA()->GetBody()->GetUserData();
     Object* bodyUserDataB = (Object*)contact->GetFixtureB()->GetBody()->GetUserData();
     // std::cout<<bodyUserData->getEntityType()<<std::endl;
-    if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::ASTEROIDE && bodyUserDataB->getEntityType()==OBJECT_TYPE::MISSLE))
+    if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::CURSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR))
     {
-        dynamic_cast<Asteroide*>( bodyUserDataA )->endContact();
-        dynamic_cast<Missle*>( bodyUserDataB )->endContact();
-    }
-    else if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::MODULE && bodyUserDataB->getEntityType()==OBJECT_TYPE::ASTEROIDE))
+        dynamic_cast<Cursor*>( bodyUserDataA )->endContact();
+        dynamic_cast<Actor*>( bodyUserDataB )->endContact();
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::SENSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
     {
-        dynamic_cast<Module*>( bodyUserDataA )->endContact();
-        dynamic_cast<Asteroide*>( bodyUserDataB )->endContact();
+        dynamic_cast<Sensor*>( bodyUserDataA )->endContact();
+        dynamic_cast<Actor*>( bodyUserDataB )->endContact();
     }
     bContact = false;
 }
 
-void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
+void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* )
 {
     Object* bodyUserDataA = (Object*)contact->GetFixtureA()->GetBody()->GetUserData();
     Object* bodyUserDataB = (Object*)contact->GetFixtureB()->GetBody()->GetUserData();
-    if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::MODULE && bodyUserDataB->getEntityType()==OBJECT_TYPE::MODULE))
+    /*if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::CURSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::CURSOR))
     {
-        if(dynamic_cast<Module*>( bodyUserDataA )->parentId==dynamic_cast<Module*>( bodyUserDataB )->parentId)
+        if(dynamic_cast<Cursor*>( bodyUserDataA )->parentId==dynamic_cast<Cursor*>( bodyUserDataB )->parentId)
             contact->SetEnabled(false);
-    }
+    } */
 }
 
 

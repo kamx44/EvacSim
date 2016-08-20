@@ -214,6 +214,7 @@ int Object::getRandomId()
         std::cout<<"ID: "<<i<<std::endl;
         return i;
     }
+    return 0;
 }
 
 
