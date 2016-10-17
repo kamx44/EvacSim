@@ -1,5 +1,6 @@
 #include "Room.h"
 #include "Wall.h"
+#include "Exit.h"
 #include "ObjectsContainer.h"
 #include "Sector.h"
 #include <iostream>
@@ -38,6 +39,10 @@ void Room::createBoundaries(){
             j=i+1;
             createWall(vertices[i],vertices[j],0);
         i++;
+    }
+    for(vector<int>::size_type i=0;i<(*escapePoints).size();i++){
+        Exit* exit = new Exit((*escapePoints)[i].first,(*escapePoints)[i].second);
+        objectsContainer->addObject(exit);
     }
 }
 

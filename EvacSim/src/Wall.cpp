@@ -7,6 +7,7 @@
 
 Wall::Wall(glm::vec2 startPosition,glm::vec2 endPosition)
 {
+    object_type = OBJECT_TYPE::WALL;
     this->startPosition = startPosition;
     this->endPosition = endPosition;
     idObject = getRandomId();
@@ -21,9 +22,7 @@ Wall::Wall(glm::vec2 startPosition,glm::vec2 endPosition)
     shape.Set(vertices[0],vertices[1]);
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(0, 0);
-    fixtureDef.shape = &shape;
-    fixtureDef.density = 2.0f;
-    fixtureDef.friction = 0.3f;
+    defineFixture(shape);
     body = World::addToWorld(bodyDef);
     setToWorld();
     setFixtureToBody();
@@ -44,11 +43,21 @@ void Wall::draw()
     glLineWidth (5.0f);
     glTranslatef(x,y,0);
     glBegin (GL_LINES);
-    glColor3b(GLbyte(255),GLbyte(30),GLbyte(30));
+    glColor3f(GLbyte(255),GLbyte(30),GLbyte(30));
     glVertex3i (startPosition.x, startPosition.y,0);
     glVertex3i (endPosition.x, endPosition.y,0);
     glEnd();
     glPopMatrix ();
+}
+
+void Wall::defineFixture(b2EdgeShape& shape){
+    fixtureDef.shape = &shape;
+    fixtureDef.density = 2.0f;
+    fixtureDef.friction = 0.3f;
+}
+
+glm::vec2 Wall::getMiddlePoint(){
+    return glm::vec2((abs(startPosition.x)-abs(endPosition.x)),(abs(startPosition.y)-abs(endPosition.y)));
 }
 
 void Wall::update(float )

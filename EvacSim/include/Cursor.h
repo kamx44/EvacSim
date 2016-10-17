@@ -29,6 +29,7 @@ public:
     {
         //world_actor->delFromObjectsContainer(this);
     }
+    b2Vec2 getPosition();
 
 
 protected:

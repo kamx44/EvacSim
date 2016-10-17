@@ -1,6 +1,7 @@
 #ifndef OBJECTSCONTAINER_H
 #define OBJECTSCONTAINER_H
 #include "Object.h"
+#include <vector>
 
 
 class ObjectsContainer

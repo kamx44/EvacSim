@@ -14,7 +14,12 @@ enum OBJECT_TYPE
     ACTOR,
     CURSOR,
     MODULE,
-    SENSOR
+    SENSOR_COLLISION,
+    SENSOR_SIGHT,
+    SENSOR_COMMUNICATION,
+    SENSOR_MOVE,
+    WALL,
+    WALL_EXIT
 };
 
 
@@ -36,7 +41,8 @@ public:
     b2Body* body;                   // pointer to body in the world object
     b2PolygonShape bodyShape;       // shape of body
     b2FixtureDef fixtureDef;        // fixture definition
-    // b2Fixture fixture;              // fixture of the body
+    b2Fixture* fixture;
+    // b2Fixture fixture;           // fixture of the body
     bool m_contacting;              // cheking if thers any contact
     float angularVelocity;          // predkosc katowa
     float torque;                   // moment obrotowy
@@ -55,7 +61,7 @@ public:
     float mass;                     // mass
     float inverseMass;              // inverse masee
     float hp;                       // health
-    int   idObject;                 // id of the object
+    unsigned int   idObject;                 // id of the object
     bool  isAlive;
     bool  drawable;                  //is ready to draw
     bool  isPlayer;
@@ -78,6 +84,7 @@ public:
     OBJECT_TYPE getEntityType();
     virtual void draw() = 0;
     int getRandomId();
+    unsigned int getId();
     void setOrientation(float angle);                             // z kata do wektora 2x2 ...
     glm::vec2 getSupport(glm::vec2 dir);
     int buildBlob(int numVertices, float radiusX, float radiusY);

@@ -76,8 +76,9 @@ void Object::setToWorld()
 {
     b2Vec2 vel((float32)(velocity.x),(float32)(velocity.y));
     body->SetLinearVelocity(vel);
+   //body->ApplyLinearImpulse(vel, body->GetWorldCenter(), 1);
     body->SetUserData( this );
-    body->SetAngularDamping(2.0f);
+    body->SetAngularDamping(0.0f);
 }
 
 /********************************************//**
@@ -89,7 +90,7 @@ void Object::setToWorld()
  ***********************************************/
 void Object::setFixtureToBody()
 {
-    body->CreateFixture(&fixtureDef);
+    fixture = body->CreateFixture(&fixtureDef);
 }
 
 
@@ -252,4 +253,12 @@ void Object::setDamage(float damage)
 OBJECT_TYPE Object::getEntityType()
 {
     return object_type;
+}
+
+unsigned int Object::getId(){
+    if(idObject){
+        return idObject;
+    }else{
+        throw "ERROR: get the null id object";
+    }
 }

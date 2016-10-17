@@ -54,24 +54,14 @@ void Boundary::draw()
     glLineWidth (3.0f);
     glTranslatef(x,y,-3);
     glRotatef( RADTODEG(angle) , 0, 0, 1 );
-    glBegin (GL_POLYGON);
-    glColor3b(GLbyte(0),GLbyte(192),GLbyte(32));
-    glVertex3i (-100.0f, -100.0f,0);
-    glVertex3i (-100.0f, 100.0f,0);
-    glVertex3i (100.0f, 100.0f,0);
-    glVertex3i (100.0f, -100.0f,0);
-  /*  for(int j=0; j<vc; j++)
-    {
-        x = vertices[j].x;
-        y = vertices[j].y;
-       // if ( m_contacting )
-       //     glColor3f(1,0,0);//red
-       // else
-            glColor3f(1,1,1);//white
-        glVertex3f (x,y,0);
-    } */
-    glEnd();
+    glBegin (GL_LINE_LOOP);
+    glColor3f(GLbyte(0),GLbyte(192),GLbyte(32));
+    glVertex3f(-100.0f, -100.0f,0);
+    glVertex3f(-100.0f, 100.0f,0);
+    glVertex3f(100.0f, 100.0f,0);
+    glVertex3f(100.0f, -100.0f,0);
 
+    glEnd();
     glPopMatrix ();
 }
 

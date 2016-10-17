@@ -1,0 +1,29 @@
+#include "Exit.h"
+
+Exit::Exit(glm::vec2 startPosition,glm::vec2 endPosition) : Wall(startPosition,endPosition)
+{
+    //ctor
+    Wall::object_type = OBJECT_TYPE::WALL_EXIT;
+    body->DestroyFixture(fixture);
+    b2EdgeShape shape;
+    vertices = new b2Vec2[vertexCount];
+    vertices[0].Set(startPosition.x, startPosition.y);
+    vertices[1].Set(endPosition.x, endPosition.y);
+    shape.Set(vertices[0],vertices[1]);
+    defineFixture(shape);
+    body->CreateFixture(&fixtureDef);
+    drawable=false;
+   // setFixtureToBody();
+}
+
+Exit::~Exit()
+{
+    //dtor
+}
+
+void Exit::defineFixture(b2EdgeShape& shape){
+    fixtureDef.shape = &shape;
+    fixtureDef.density = 2.0f;
+    fixtureDef.friction = 0.3f;
+    fixtureDef.isSensor = true;
+}
