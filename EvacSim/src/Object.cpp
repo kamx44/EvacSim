@@ -103,9 +103,9 @@ void Object::setFixtureToBody()
  ***********************************************/
 void Object::destroyBody()
 {
-   // World::world.DestroyBody(body);
+    World::world.DestroyBody(body);
     body=nullptr;
-    std::cout<<"usunieto body"<<std::endl;
+    //std::cout<<"usunieto body"<<std::endl;
 }
 
 /********************************************//**
@@ -205,17 +205,17 @@ int Object::getRandomId()
     int i = rand() % 100000;
     std::pair<std::set<int>::iterator,bool> ret;
     ret = idContainer.insert(i);
-    if (ret.second==false)
+    while (ret.second==false)
     {
-        getRandomId();
-        std::cout<<"To id juz jest"<<std::endl;
+        i = rand() % 100000;
+        ret = idContainer.insert(i);
+        //getRandomId();
+        //std::cout<<"To id juz jest"<<std::endl;
     }
-    else
-    {
-        std::cout<<"ID: "<<i<<std::endl;
+        //std::cout<<"ID: "<<i<<std::endl;
         return i;
-    }
-    return 0;
+    //}
+    //return 0;
 }
 
 

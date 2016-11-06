@@ -1,7 +1,9 @@
 
+#include "Mmath.h"
 #include "ContactListener.h"
 #include "Cursor.h"
 #include "Actor.h"
+#include "Exit.h"
 #include "Object.h"
 
 
@@ -32,22 +34,24 @@ void ContactListener::BeginContact(b2Contact* contact)
     {
         dynamic_cast<Cursor*>( bodyUserDataA )->startContact();
         dynamic_cast<Actor*>( bodyUserDataB )->startContact();
-    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::ACTOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_COMMUNICATION)
     {
-        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataA );
-        Actor* actor = dynamic_cast<Actor*>( bodyUserDataB );
+        Actor* actor = dynamic_cast<Actor*>( bodyUserDataA );
+        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
         sensor->startContact();
         actor->startContact();
-        sensor->addVisibleObject(actor->getId());
-    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT)
+        sensor->addObjectId(actor->getId());
+        //std::cout<<"weszlo 1"<<std::endl;
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT)
     {
-        Sensor* sensor1 = dynamic_cast<Sensor*>( bodyUserDataA );
-        Sensor* sensor2 = dynamic_cast<Sensor*>( bodyUserDataB );
-       // std::cout<<"sensor catched"<<std::endl;
-      /*  sensor1->startContact();
-        sensor2->startContact();
-        sensor1->addVisibleObject(sensor2->getParentId());
-        sensor2->addVisibleObject(sensor1->getParentId()); */
+        Exit* exit = dynamic_cast<Exit*>( bodyUserDataA );
+        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
+        sensor->startContact();
+        exit->startContact();
+        sensor->addObjectToCheckExitContainer(exit->getId(),exit->getMiddlePoint());
+
+        //sensor->addObjectIdPos(exit->getId(),exit->getMiddlePoint());
+        //std::cout<<"weszlo 2"<<std::endl;
         //sensor1->printData();
         //sensor2->printData();
     }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_MOVE){
@@ -69,6 +73,33 @@ void ContactListener::BeginContact(b2Contact* contact)
         impactVelocity.y  *= (std::rand()%100);
         Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
         sensor->setParentVelocity(impactVelocity);
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_OBSTACLE){
+        Wall* wall = dynamic_cast<Exit*>( bodyUserDataA );
+        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
+        if(sensor->getParentSensor()->removeObjectFromCheckExitContainer(sensor->getWhereIWasSend(),sensor->getId())){
+           sensor->isAlive=false;
+            //std::cout<<"usuwam"<<std::endl;
+        }
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
+    {
+        Actor* actor = dynamic_cast<Actor*>( bodyUserDataB );
+        Exit* exit = dynamic_cast<Exit*>( bodyUserDataA );
+        actor->startContact();
+        exit->startContact();
+
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_OBSTACLE)
+    {
+        Exit* exit = dynamic_cast<Exit*>( bodyUserDataA );
+        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
+        sensor->getParentSensor()->addObjectIdPos(exit->getId(),exit->getMiddlePoint());
+        if(sensor->getParentSensor()->removeObjectFromCheckExitContainer(exit->getId(),sensor->getId())){
+             sensor->isAlive=false;
+            //std::cout<<"usuwam"<<std::endl;
+           /* if(sensor){
+                delete sensor;
+                sensor = nullptr;
+            }*/
+        }
     }
    /* else if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::CURSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::CURSOR))
     {
@@ -87,27 +118,34 @@ void ContactListener::EndContact(b2Contact* contact)
     {
         dynamic_cast<Cursor*>( bodyUserDataA )->endContact();
         dynamic_cast<Actor*>( bodyUserDataB )->endContact();
-    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::ACTOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_COMMUNICATION)
     {
-        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataA );
-        Actor* actor = dynamic_cast<Actor*>( bodyUserDataB );
+        Actor* actor = dynamic_cast<Actor*>( bodyUserDataA );
+        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
         sensor->endContact();
         actor->endContact();
-        sensor->removeInvisibleObject(actor->getId());
-    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT)
+        //sensor->removeObjectId(actor->getId());
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_SIGHT)
     {
-       // std::cout<<"sensor missed"<<std::endl;
-        /*Sensor* sensor1 = dynamic_cast<Sensor*>( bodyUserDataA );
-        Sensor* sensor2 = dynamic_cast<Sensor*>( bodyUserDataB );
-        sensor1->endContact();
-        sensor2->endContact();
-        sensor1->removeInvisibleObject(sensor2->getParentId());
-        sensor2->removeInvisibleObject(sensor1->getParentId()); */
+        Exit* exit = dynamic_cast<Exit*>( bodyUserDataA );
+        Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
+        sensor->endContact();
+        exit->endContact();
+        // sensor->removeObjectIdPos(exit->getId());
         //sensor1->printData();
         //sensor2->printData();
     }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_MOVE){
             Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
             sensor->rotateBody=true;
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
+    {
+        Actor* actor = dynamic_cast<Actor*>( bodyUserDataB );
+        Exit* exit = dynamic_cast<Exit*>( bodyUserDataA );
+        actor->startContact();
+        exit->startContact();
+        b2Vec2 pos = exit->body->GetPosition();
+        //std::cout<<"EXIT ID:"<<exit->getId()<<" POS x:"<<pos.x<<" y: "<<pos.y<<std::endl;
+        actor->setPassedExit(exit->getId());
     }
     bContact = false;
 }

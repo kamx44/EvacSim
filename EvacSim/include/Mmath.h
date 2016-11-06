@@ -15,6 +15,8 @@ float getRandomFloat (float LO, float HI);
 int getRandomInt (int LO, int HI);
 float diagonal(float x,float y);
 int getRandomId();
+b2Vec2 normalize(b2Vec2 vec);
+b2Vec2 multiplyB2Vec2(b2Vec2 vec, float mul);
 inline void swapf(float& a, float& b)
 {
     float c = a;

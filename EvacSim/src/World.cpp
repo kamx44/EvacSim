@@ -52,10 +52,11 @@ int World::startGame()
     //void (World::*addToObjectsContainerPointer)(Object*);
     //addToObjectsContainerPointer = &World::addToObjectsContainer;
     Building* building = new Building(objectsContainer);
+    building->createRooms();
     //createActors(3,building);
 
     CommunicationBridge* communicationBridge = new CommunicationBridge();
-    for(int i=0; i<10; i++)
+    for(int i=0; i<15; i++)
     {
         if(Sector* freeSector = building->getFreeSector()){
             Actor* actor = new Actor(freeSector,objectsContainer,communicationBridge,cursor);

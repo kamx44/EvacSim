@@ -54,6 +54,8 @@ void Wall::defineFixture(b2EdgeShape& shape){
     fixtureDef.shape = &shape;
     fixtureDef.density = 2.0f;
     fixtureDef.friction = 0.3f;
+    fixtureDef.filter.categoryBits = 0x0020;
+    fixtureDef.filter.maskBits = 0x0008 | 0x00010;
 }
 
 glm::vec2 Wall::getMiddlePoint(){

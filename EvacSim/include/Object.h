@@ -18,9 +18,11 @@ enum OBJECT_TYPE
     SENSOR_SIGHT,
     SENSOR_COMMUNICATION,
     SENSOR_MOVE,
+    SENSOR_OBSTACLE,
     WALL,
     WALL_EXIT
 };
+
 
 
 class Object

@@ -27,3 +27,7 @@ void Exit::defineFixture(b2EdgeShape& shape){
     fixtureDef.friction = 0.3f;
     fixtureDef.isSensor = true;
 }
+
+b2Vec2 Exit::getMiddlePoint(){
+    return b2Vec2((vertices[0].x+vertices[1].x)/2, (vertices[0].y+vertices[1].y)/2);
+}

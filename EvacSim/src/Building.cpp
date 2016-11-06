@@ -11,7 +11,7 @@ typedef pair<glm::vec2,glm::vec2> pairGlm;
 Building::Building(ObjectsContainer* objectsContainer)
 {
     this->objectsContainer=objectsContainer;
-    createRooms();
+    //createRooms();
 }
 
 Building::~Building()

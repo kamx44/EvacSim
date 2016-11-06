@@ -112,6 +112,20 @@ float diagonal(float x,float y)
     return sqrt((x*x)+(y*y));
 }
 
+b2Vec2 normalize(b2Vec2 vec){
+    float diag = diagonal(vec.x,vec.y);
+    if(diag>0){
+        vec.x = vec.x/diag;
+        vec.y = vec.y/diag;
+    }
+    return vec;
+}
+
+b2Vec2 multiplyB2Vec2(b2Vec2 vec, float mul){
+    vec.x *= mul;
+    vec.y *= mul;
+    return vec;
+}
 
 
 

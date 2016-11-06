@@ -10,6 +10,7 @@ class Exit : public Wall
         Exit(glm::vec2 startPosition,glm::vec2 endPosition);
         virtual ~Exit();
         virtual void defineFixture(b2EdgeShape&);
+        b2Vec2 getMiddlePoint();
 
     protected:
 

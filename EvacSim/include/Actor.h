@@ -10,6 +10,7 @@
 #include "World.h"
 #include "Cursor.h"
 #include <mutex>
+#include <set>
 
 class CommunicationBridge;
 
@@ -31,8 +32,8 @@ public:
         //world_actor->delFromObjectsContainer(this);
     }
 
-    void communication(std::vector<unsigned int>&,std::vector<unsigned int>&);
-
+    void communication(std::vector<std::pair<unsigned int,b2Vec2> >&,std::vector<unsigned int>&);
+    void setPassedExit(unsigned int);
     void Start(){
         // This will start the thread. Notice move semantics!
         the_thread = std::thread(&Actor::communication,this,std::ref(inSightObjectsIds),std::ref(actorsToCommunicateIds));
@@ -40,7 +41,7 @@ public:
     b2Vec2 moveForce;
 protected:
 private:
-    std::vector<unsigned int> inSightObjectsIds;
+    std::vector<std::pair<unsigned int,b2Vec2> > inSightObjectsIds;
     std::vector<unsigned int> actorsToCommunicateIds;
     std::string readBuffer;
     int32 size;
@@ -57,6 +58,7 @@ private:
     bool stop_thread = false;
     Cursor* cursor;
     bool rotateBody;
+    std::set<unsigned int> passedExits;
 
 
 };
