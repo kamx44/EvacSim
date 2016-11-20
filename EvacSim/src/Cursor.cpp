@@ -21,11 +21,12 @@ Cursor::Cursor()
 
     //shape of cursor
     //size = 3;
+    drawable = false;
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(position[0], position[1]);
-   // radius = 1.0f;
-   // circle.m_radius = radius;
-  //  fixtureDef.shape = &circle;
+    radius = 1.0f;
+    circle.m_radius = radius;
+    fixtureDef.shape = &circle;
     vertexCount = 3;
     vertices = new b2Vec2[3];
 
@@ -36,9 +37,9 @@ Cursor::Cursor()
     //vertices[0].Set(-1,-1);
    // vertices[1].Set(0,1);
    // vertices[2].Set(1,-1);
-    buildBlob(3,5,5);
-    bodyShape.Set(vertices, 3);
-    fixtureDef.shape = &bodyShape;
+    //buildBlob(3,5,5);
+    //bodyShape.Set(vertices, 3);
+    //fixtureDef.shape = &bodyShape;
     fixtureDef.density = 0.5f;
     fixtureDef.friction = 0.3f;
     fixtureDef.filter.categoryBits = 0x0002;
@@ -48,7 +49,7 @@ Cursor::Cursor()
     setToWorld();
     setFixtureToBody();
     body->GetMass();
-    drawable = true;
+
 }
 
 
@@ -76,7 +77,7 @@ void Cursor::calcSpeed()
    // body->SetTransform( body->GetPosition(), newAngle );
    // bodyAngle = body->GetAngle();
    // setOrientation(body->GetAngle()+M_PI/2);
-   // body->SetLinearVelocity(b2Vec2(0,0));
+    body->SetLinearVelocity(b2Vec2(0,0));
     glm::vec2 force(0);
     force += glm::vec2(0,2000)  * glm::vec2(Events::getInstance().keypadKeys[SDLK_w]);
     force -= glm::vec2(0,2000)  * glm::vec2(Events::getInstance().keypadKeys[SDLK_s]);
@@ -94,7 +95,7 @@ void Cursor::update(float dt)
 
 void Cursor::draw()
 {
-    float x = position[0];
+    /*float x = position[0];
     float y = position[1];
     float angle = body->GetAngle();
     //float angle = fOrientation;
@@ -108,16 +109,14 @@ void Cursor::draw()
     else
         glColor3f(1,1,1);//white
 
-    for(int j=0; j<vertexCount; j++)
+    for (int j=0; j < 360; j++)
     {
-        x = vertices[j].x;
-        y = vertices[j].y;
-        glVertex3f (x,y,0);
-
+        float degInRad = DEGTORAD(j);
+        glVertex2f(cos(degInRad)*radius,sin(degInRad)*radius);
     }
 
     glEnd();
-    glPopMatrix ();
+    glPopMatrix (); */
 }
 
 b2Vec2 Cursor::getPosition(){

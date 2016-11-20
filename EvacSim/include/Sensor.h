@@ -2,18 +2,24 @@
 #define SENSOR_H
 #include "Object.h"
 #include "ObjectsContainer.h"
+#include "MainDirection.h"
 #include <unordered_map>
 
 enum sensorType{
-    COMMUNICATE,
-    SIGHT
+    NORMAL,
+    OBSTACLE_EXIT,
+    OBSTACLE_ACTOR
 };
 
 class Sensor : public Object
 {
     public:
         sensorType type;
-        Sensor(OBJECT_TYPE sensor_type,glm::vec2 position,float radius,unsigned int idParent, ObjectsContainer* objContainer);
+        Sensor(sensorType type,
+               OBJECT_TYPE sensor_type,glm::vec2 position,
+               float radius,
+               unsigned int idParent,
+               ObjectsContainer* objContainer);
         virtual ~Sensor();
         void update(float dt);
         void draw();
@@ -27,13 +33,12 @@ class Sensor : public Object
         void addObjectToCheckExitContainer(unsigned int visibleObjectId, b2Vec2 position);
         void addObjectToCheckActorContainer(unsigned int visibleObjectId, b2Vec2 position);
         bool removeObjectFromCheckExitContainer(unsigned int visibleObjectIdExit, unsigned int visibleObjectIdSensor);
-        void removeObjectFromCheckActorContainer(unsigned int visibleObjectId);
-        void moveObjectFromCheckExitContainer(unsigned int visibleObjectId);
-        void moveObjectFromCheckActorContainer(unsigned int visibleObjectId);
+        bool removeObjectFromCheckActorContainer(unsigned int visibleObjectIdActor, unsigned int visibleObjectIdSensor);
         void removeObjectId(unsigned int visibleObjectId);
         void removeObjectIdPos(unsigned int visibleObjectId);
         void sendObstacleSensor(b2Vec2 destination);
-        void createObstacleSensors();
+        void createObstacleSensorsExit();
+        void createObstacleSensorsActors();
         void moveBody(b2Vec2 velocity);
         unsigned int getParentId();
         void printData(); //for testing
@@ -42,16 +47,13 @@ class Sensor : public Object
         void setVisibleObjectsIdPosContainer(std::vector<std::pair<unsigned int,b2Vec2> >& _visibleObjects);
         void setVisibleObjectsIdContainer(std::vector<unsigned int>& _visibleObjects);
         void setParentForce(b2Vec2* parentForce);
-        void setParentSensor(Sensor* pSensor);
-        Sensor* getParentSensor();
+        void setParentSensor(Object* pSensor);
+        Object* getParentSensor();
         unsigned int getWhereIWasSend();
         void setWhereIWasSend(unsigned int);
-
-
-      /* void setVelocity(b2Vec2 vel){
-            b
-        } */
         bool rotateBody;
+        void setParentMainDirection(MainDirection &mainDir);
+        void setMainExitDirection(unsigned int mainExitId,b2Vec2 position);
     protected:
     private:
         int32 size;
@@ -67,8 +69,9 @@ class Sensor : public Object
         b2Vec2* pushForce;
         bool freeNewSensor;
         ObjectsContainer* objContainer;
-        Sensor* parentSensor;
+        Object* parentSensor;
         unsigned int whereIWasSend;
+        MainDirection* mainDirection;
 
 };
 

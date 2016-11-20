@@ -235,7 +235,7 @@ std::set<int> Object::idContainer(init());
 
 void Object::delObject()
 {
-    std::cout<<"COS sie zjebalo"<<std::endl;
+    std::cout<<"delete object"<<std::endl;
 }
 
 void Object::setDamage(float damage)

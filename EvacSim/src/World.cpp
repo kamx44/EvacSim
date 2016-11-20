@@ -56,7 +56,7 @@ int World::startGame()
     //createActors(3,building);
 
     CommunicationBridge* communicationBridge = new CommunicationBridge();
-    for(int i=0; i<15; i++)
+    for(int i=0; i<10; i++)
     {
         if(Sector* freeSector = building->getFreeSector()){
             Actor* actor = new Actor(freeSector,objectsContainer,communicationBridge,cursor);

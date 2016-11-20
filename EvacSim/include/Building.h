@@ -5,6 +5,8 @@
 
 class ObjectsContainer;
 
+typedef pair<glm::vec2,glm::vec2> pairGlm;
+
 class Building
 {
     public:
@@ -12,10 +14,12 @@ class Building
         virtual ~Building();
         void createRooms();
         Sector* getFreeSector();
+
     protected:
     private:
         ObjectsContainer* objectsContainer;
         std::vector<Room*> roomsContainer;
+        std::vector<pairGlm> excRoomsContainer;
 
 };
 

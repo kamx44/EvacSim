@@ -7,9 +7,10 @@
 
 using namespace std;
 
-Room::Room(ObjectsContainer* objectsContainer,glm::vec2 leftDownCorner,glm::vec2 rightUpCorner,vector<pair<glm::vec2,glm::vec2>> escapePoints)
+Room::Room(ObjectsContainer* objectsContainer,std::vector<pair<glm::vec2,glm::vec2>> excRoomsContainer,glm::vec2 leftDownCorner,glm::vec2 rightUpCorner,vector<pair<glm::vec2,glm::vec2>> escapePoints)
 {
     this->objectsContainer = objectsContainer;
+    this->excRoomsContainer = excRoomsContainer;
     //createSectors();
     vertices = new glm::vec2[4];
     this->vertices[1] = leftDownCorner;
@@ -41,8 +42,13 @@ void Room::createBoundaries(){
         i++;
     }
     for(vector<int>::size_type i=0;i<(*escapePoints).size();i++){
-        Exit* exit = new Exit((*escapePoints)[i].first,(*escapePoints)[i].second);
-        objectsContainer->addObject(exit);
+        if(checkIfEscapeExist((*escapePoints)[i].first,(*escapePoints)[i].second)){
+            Exit* exit = new Exit((*escapePoints)[i].first,(*escapePoints)[i].second);
+            b2Vec2 mid = exit->body->GetPosition();//exit->getMiddlePoint();
+            cout<<"Exit: "<<mid.x<<" "<<mid.y<<endl;//";;"<<(*escapePoints)[i].second.x<<" "<<(*escapePoints)[i].second.y<<endl;
+            objectsContainer->addObject(exit);
+            exits.push_back(exit);
+        }
     }
 }
 
@@ -73,7 +79,7 @@ int Room::createWall(glm::vec2 point1, glm::vec2 point2, vector<int>::size_type 
         i++;
     }
     if(!found){
-        cout<<"Wall: "<<point1.x<<" "<<point1.y<<";;"<<point2.x<<" "<<point2.y<<endl;
+
         Wall *wall = new Wall(point1,point2);
         objectsContainer->addObject(wall);
     }
@@ -147,4 +153,12 @@ Sector* Room::getFreeSector(){
     }
     else
         return nullptr;
+}
+
+bool Room::checkIfEscapeExist(glm::vec2 point1,glm::vec2 point2){
+    for(auto exit : excRoomsContainer){
+        if(((exit.first == point1) && (exit.second == point2)) || ((exit.first == point2) && (exit.second == point1)) )
+            return false;
+    }
+    return true;
 }

@@ -11,6 +11,7 @@ class Exit : public Wall
         virtual ~Exit();
         virtual void defineFixture(b2EdgeShape&);
         b2Vec2 getMiddlePoint();
+        bool mainExit;
 
     protected:
 

@@ -13,6 +13,7 @@ Exit::Exit(glm::vec2 startPosition,glm::vec2 endPosition) : Wall(startPosition,e
     defineFixture(shape);
     body->CreateFixture(&fixtureDef);
     drawable=false;
+    mainExit = false;
    // setFixtureToBody();
 }
 
@@ -25,7 +26,9 @@ void Exit::defineFixture(b2EdgeShape& shape){
     fixtureDef.shape = &shape;
     fixtureDef.density = 2.0f;
     fixtureDef.friction = 0.3f;
-    fixtureDef.isSensor = true;
+    fixtureDef.isSensor = false;
+    fixtureDef.filter.categoryBits = 0x0040;
+    fixtureDef.filter.maskBits = 0x0008 | 0x00010;
 }
 
 b2Vec2 Exit::getMiddlePoint(){

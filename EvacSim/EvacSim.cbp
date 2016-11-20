@@ -65,6 +65,7 @@
 		<Unit filename="include/Game.h" />
 		<Unit filename="include/Gauss.h" />
 		<Unit filename="include/Image.h" />
+		<Unit filename="include/MainDirection.h" />
 		<Unit filename="include/Mmath.h" />
 		<Unit filename="include/Object.h" />
 		<Unit filename="include/ObjectsContainer.h" />
@@ -89,6 +90,7 @@
 		<Unit filename="src/Game.cpp" />
 		<Unit filename="src/Gauss.cpp" />
 		<Unit filename="src/Image.cpp" />
+		<Unit filename="src/MainDirection.cpp" />
 		<Unit filename="src/Mmath.cpp" />
 		<Unit filename="src/Object.cpp" />
 		<Unit filename="src/ObjectsContainer.cpp" />

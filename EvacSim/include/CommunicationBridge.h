@@ -5,6 +5,7 @@
 
 enum messageType{
     NOEXIT,
+    MAIN_EXIT,
     EXIT
 };
 
@@ -14,8 +15,9 @@ class CommunicationBridge
         CommunicationBridge();
         virtual ~CommunicationBridge();
         void sendMessage(unsigned int id,std::pair<messageType,std::pair<unsigned int, b2Vec2> > message);
-        std::pair<messageType,std::pair<unsigned int, b2Vec2> > readMessage(unsigned int id);
+        std::vector<std::pair<messageType,std::pair<unsigned int, b2Vec2>>> readMessage(unsigned int id);
         void addThread(int id);
+        void clearAgentMessages(unsigned int id);
     protected:
 
     private:

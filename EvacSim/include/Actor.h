@@ -9,6 +9,7 @@
 #include "Object.h"
 #include "World.h"
 #include "Cursor.h"
+#include "MainDirection.h"
 #include <mutex>
 #include <set>
 
@@ -39,6 +40,10 @@ public:
         the_thread = std::thread(&Actor::communication,this,std::ref(inSightObjectsIds),std::ref(actorsToCommunicateIds));
     }
     b2Vec2 moveForce;
+    std::pair<unsigned int,b2Vec2> takeTheMostCommonExit(std::unordered_map<unsigned int, std::pair<int,b2Vec2> > &);
+    void addToCountsExitContainer(std::unordered_map<unsigned int, std::pair<int,b2Vec2> > &countsExitsContainer,int idExit, b2Vec2 positionExit);
+    void resetToBeggining();
+
 protected:
 private:
     std::vector<std::pair<unsigned int,b2Vec2> > inSightObjectsIds;
@@ -59,8 +64,9 @@ private:
     Cursor* cursor;
     bool rotateBody;
     std::set<unsigned int> passedExits;
-
-
+    MainDirection mainDirection;
+    b2Vec2 previousPosition;
+    int constPositionCounter;
 };
 
 #endif // ACTOR_H

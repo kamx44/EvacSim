@@ -2529,7 +2529,7 @@
 	<string>
 	<Box2D/Box2D.h>
 
-1478466199 source:e:\evacsim\evacsim\evacsim\src\actor.cpp
+1479665191 source:e:\evacsim\evacsim\evacsim\src\actor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<iostream>
@@ -2545,7 +2545,7 @@
 	"Object.h"
 	<vector>
 
-1478027076 e:\evacsim\evacsim\evacsim\include\object.h
+1478476613 e:\evacsim\evacsim\evacsim\include\object.h
 	<math.h>
 	<set>
 	<glm/glm.hpp>
@@ -2945,7 +2945,7 @@
 	<intrin.h>
 	<limits>
 
-1477777985 e:\evacsim\evacsim\evacsim\include\actor.h
+1479661571 e:\evacsim\evacsim\evacsim\include\actor.h
 	<string>
 	<vector>
 	<thread>
@@ -2955,15 +2955,17 @@
 	"Object.h"
 	"World.h"
 	"Cursor.h"
+	"MainDirection.h"
 	<mutex>
 	<set>
 
-1478382515 e:\evacsim\evacsim\evacsim\include\sensor.h
+1479076418 e:\evacsim\evacsim\evacsim\include\sensor.h
 	"Object.h"
 	"ObjectsContainer.h"
+	"MainDirection.h"
 	<unordered_map>
 
-1477783758 e:\evacsim\evacsim\evacsim\include\communicationbridge.h
+1479664212 e:\evacsim\evacsim\evacsim\include\communicationbridge.h
 	<unordered_map>
 	"Actor.h"
 
@@ -4483,21 +4485,22 @@
 	"Object.h"
 	"World.h"
 
-1478040600 source:e:\evacsim\evacsim\evacsim\src\building.cpp
+1479074873 source:e:\evacsim\evacsim\evacsim\src\building.cpp
 	<glm/glm.hpp>
 	<glm/detail/type_mat2x2.hpp>
 	"Building.h"
 	"Room.h"
 	<vector>
 
-1471551967 e:\evacsim\evacsim\evacsim\include\building.h
+1479032660 e:\evacsim\evacsim\evacsim\include\building.h
 	"Room.h"
 
-1471552042 e:\evacsim\evacsim\evacsim\include\room.h
+1479074325 e:\evacsim\evacsim\evacsim\include\room.h
 	<GL/gl.h>
 	<glm/glm.hpp>
 	<vector>
 	"Sector.h"
+	"Exit.h"
 
 1456148420 source:e:\evacsim\evacsim\evacsim\src\camera.cpp
 	"Camera.h"
@@ -4509,10 +4512,10 @@
 	<iostream>
 	<GL/gl.h>
 
-1478450065 source:e:\evacsim\evacsim\evacsim\src\communicationbridge.cpp
+1479664315 source:e:\evacsim\evacsim\evacsim\src\communicationbridge.cpp
 	"CommunicationBridge.h"
 
-1478466932 source:e:\evacsim\evacsim\evacsim\src\contactlistener.cpp
+1479076501 source:e:\evacsim\evacsim\evacsim\src\contactlistener.cpp
 	"Mmath.h"
 	"ContactListener.h"
 	"Cursor.h"
@@ -4520,7 +4523,7 @@
 	"Exit.h"
 	"Object.h"
 
-1476528408 source:e:\evacsim\evacsim\evacsim\src\cursor.cpp
+1479057556 source:e:\evacsim\evacsim\evacsim\src\cursor.cpp
 	"Cursor.h"
 	"Renderer.h"
 	"Events.h"
@@ -4549,10 +4552,10 @@
 	"Renderer.h"
 	"Camera.h"
 
-1477861087 source:e:\evacsim\evacsim\evacsim\src\exit.cpp
+1479072890 source:e:\evacsim\evacsim\evacsim\src\exit.cpp
 	"Exit.h"
 
-1477861151 e:\evacsim\evacsim\evacsim\include\exit.h
+1479072877 e:\evacsim\evacsim\evacsim\include\exit.h
 	"Object.h"
 	"World.h"
 	"Wall.h"
@@ -4647,7 +4650,7 @@
 	"Renderer.h"
 	"Camera.h"
 
-1474385080 source:e:\evacsim\evacsim\evacsim\src\room.cpp
+1479074498 source:e:\evacsim\evacsim\evacsim\src\room.cpp
 	"Room.h"
 	"Wall.h"
 	"Exit.h"
@@ -4659,7 +4662,7 @@
 	"Sector.h"
 	"iostream"
 
-1478466906 source:e:\evacsim\evacsim\evacsim\src\sensor.cpp
+1479076537 source:e:\evacsim\evacsim\evacsim\src\sensor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Sensor.h"
@@ -4669,14 +4672,14 @@
 	<mutex>
 	<utility>
 
-1478386081 source:e:\evacsim\evacsim\evacsim\src\wall.cpp
+1479056445 source:e:\evacsim\evacsim\evacsim\src\wall.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Wall.h"
 	"Mmath.h"
 	"stdio.h"
 
-1478383548 source:e:\evacsim\evacsim\evacsim\src\world.cpp
+1479294285 source:e:\evacsim\evacsim\evacsim\src\world.cpp
 	"World.h"
 	"Object.h"
 	"Renderer.h"
@@ -4690,4 +4693,12 @@
 	"CommunicationBridge.h"
 	<Box2D/Box2D.h>
 	<thread>
+
+1479074448 e:\evacsim\evacsim\evacsim\include\maindirection.h
+	"World.h"
+	"iostream"
+	"set"
+
+1479072647 source:e:\evacsim\evacsim\evacsim\src\maindirection.cpp
+	"MainDirection.h"
 

@@ -10,24 +10,14 @@ Renderer::Renderer()
     initOpenGL();
     ratio = 0;
     last_time = 0;
-
-
     statek.imageID = statek.imgToTexture("data/img/statek.png");
-
-
-
-
 }
-
-
-
 
 Renderer& Renderer::getInstance()   // singletone pattern
 {
     static Renderer instance;
     return instance;
 }
-
 
 Renderer::~Renderer()
 {
