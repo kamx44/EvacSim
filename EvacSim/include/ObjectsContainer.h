@@ -1,7 +1,7 @@
 #ifndef OBJECTSCONTAINER_H
 #define OBJECTSCONTAINER_H
 #include "Object.h"
-#include <vector>
+#include <unordered_map>
 
 
 class ObjectsContainer
@@ -13,9 +13,10 @@ class ObjectsContainer
         void deleteObject(Object* object);
         int getSize();
         Object* getObjectByIndex(int index);
+        std::unordered_map<unsigned int,Object*> getContainer();
     protected:
     private:
-        std::vector<Object*> container;
+        std::unordered_map<unsigned int,Object*> container;
 };
 
 #endif // OBJECTSCONTAINER_H

@@ -60,18 +60,18 @@ void Renderer::drawAll()
     glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);         // Clear The Screen And The Depth Buffer
     glColor4f (1,1,1,1);
     glLoadIdentity();
-    b2Vec2 pos = objectsContainer->getObjectByIndex(0)->body->GetPosition();
-    glTranslatef(-pos.x,-pos.y,-30);    //minus variables because bodies position is inverted against to opengl map
+    b2Vec2 pos = objectsContainer->getObjectByIndex(1)->body->GetPosition();
+    glTranslatef(-pos.x,-pos.y,-30);  //minus variables because bodies position is inverted against to opengl map
     //  glTranslatef(0,0,-30);
 
     drawAxis(0,0,0);
     glColor3f( 0.0, 1.0, 1.0 );
-    objectsContainer->getObjectByIndex(0)->draw();
+    //objectsContainer->getObjectByIndex(2)->draw();
     //glTranslatef(0.0f, 0.0f, -15.0f);
-    for(int i=1; i<objectsContainer->getSize(); i++)
+    for(auto it : objectsContainer->getContainer())
     {
-        if(objectsContainer->getObjectByIndex(i)->drawable==true)
-            objectsContainer->getObjectByIndex(i)->draw();
+        if(it.second->drawable==true)
+            it.second->draw();
     }
     glPopMatrix();
     glColor3f( 0.0, 1.0, 1.0 );

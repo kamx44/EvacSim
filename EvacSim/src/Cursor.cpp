@@ -11,7 +11,7 @@ using namespace std;
 Cursor::Cursor()
 {
     object_type = OBJECT_TYPE::CURSOR;
-    idObject = getRandomId();
+    idObject = 1;//getRandomId();
     hp=1000000;
     position[0] = 0;
     position[1] = 0;

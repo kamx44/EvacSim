@@ -152,9 +152,10 @@ void ContactListener::EndContact(b2Contact* contact)
         b2Vec2 pos = exit->body->GetPosition();
         //std::cout<<"EXIT ID:"<<exit->getId()<<" POS x:"<<pos.x<<" y: "<<pos.y<<std::endl;
         actor->setPassedExit(exit->getId());
-        //if(exit->mainExit){
-        //    actor->isAlive=false;
-        //}
+        if(exit->mainExit){
+            actor->isAlive=false;
+            //actor->delObject();
+        }
     }
     bContact = false;
 }
@@ -163,11 +164,6 @@ void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* )
 {
     Object* bodyUserDataA = (Object*)contact->GetFixtureA()->GetBody()->GetUserData();
     Object* bodyUserDataB = (Object*)contact->GetFixtureB()->GetBody()->GetUserData();
-    /*if ( (bodyUserDataA->getEntityType()==OBJECT_TYPE::CURSOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::CURSOR))
-    {
-        if(dynamic_cast<Cursor*>( bodyUserDataA )->parentId==dynamic_cast<Cursor*>( bodyUserDataB )->parentId)
-            contact->SetEnabled(false);
-    } contact->SetEnabled(false)*/
     if(bodyUserDataA->getEntityType()==OBJECT_TYPE::ACTOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_OBSTACLE)
     {
         Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );

@@ -2342,17 +2342,18 @@
 	"World.h"
 	"Wall.h"
 
-1474390738 source:e:\evacsim\evacsim\evacsim\main.cpp
+1481896010 source:e:\evacsim\evacsim\evacsim\main.cpp
 	"Game.h"
 	"ctime"
 	<iostream>
 	<pthread.h>
 	<thread>
+	<chrono>
 
 1456148420 e:\evacsim\evacsim\evacsim\include\game.h
 	"World.h"
 
-1471731245 e:\evacsim\evacsim\evacsim\include\world.h
+1480014638 e:\evacsim\evacsim\evacsim\include\world.h
 	<vector>
 	"ContactListener.h"
 	"PolygonGenerator.h"
@@ -2529,7 +2530,7 @@
 	<string>
 	<Box2D/Box2D.h>
 
-1479665191 source:e:\evacsim\evacsim\evacsim\src\actor.cpp
+1481890933 source:e:\evacsim\evacsim\evacsim\src\actor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<iostream>
@@ -2541,11 +2542,11 @@
 	"stdio.h"
 	<typeinfo>
 
-1471814475 e:\evacsim\evacsim\evacsim\include\objectscontainer.h
+1479678763 e:\evacsim\evacsim\evacsim\include\objectscontainer.h
 	"Object.h"
-	<vector>
+	<unordered_map>
 
-1478476613 e:\evacsim\evacsim\evacsim\include\object.h
+1481824085 e:\evacsim\evacsim\evacsim\include\object.h
 	<math.h>
 	<set>
 	<glm/glm.hpp>
@@ -2945,7 +2946,7 @@
 	<intrin.h>
 	<limits>
 
-1479661571 e:\evacsim\evacsim\evacsim\include\actor.h
+1481810214 e:\evacsim\evacsim\evacsim\include\actor.h
 	<string>
 	<vector>
 	<thread>
@@ -2959,7 +2960,7 @@
 	<mutex>
 	<set>
 
-1479076418 e:\evacsim\evacsim\evacsim\include\sensor.h
+1481826537 e:\evacsim\evacsim\evacsim\include\sensor.h
 	"Object.h"
 	"ObjectsContainer.h"
 	"MainDirection.h"
@@ -4512,10 +4513,10 @@
 	<iostream>
 	<GL/gl.h>
 
-1479664315 source:e:\evacsim\evacsim\evacsim\src\communicationbridge.cpp
+1481891402 source:e:\evacsim\evacsim\evacsim\src\communicationbridge.cpp
 	"CommunicationBridge.h"
 
-1479076501 source:e:\evacsim\evacsim\evacsim\src\contactlistener.cpp
+1481826737 source:e:\evacsim\evacsim\evacsim\src\contactlistener.cpp
 	"Mmath.h"
 	"ContactListener.h"
 	"Cursor.h"
@@ -4523,7 +4524,7 @@
 	"Exit.h"
 	"Object.h"
 
-1479057556 source:e:\evacsim\evacsim\evacsim\src\cursor.cpp
+1479756946 source:e:\evacsim\evacsim\evacsim\src\cursor.cpp
 	"Cursor.h"
 	"Renderer.h"
 	"Events.h"
@@ -4626,15 +4627,16 @@
 	<glm/glm.hpp>
 	<Box2D/Box2D.h>
 
-1478466968 source:e:\evacsim\evacsim\evacsim\src\object.cpp
+1481823987 source:e:\evacsim\evacsim\evacsim\src\object.cpp
 	"Object.h"
 	"Mmath.h"
 	"Renderer.h"
 	"Events.h"
 	<Box2D/Box2D.h>
 
-1478466968 source:e:\evacsim\evacsim\evacsim\src\objectscontainer.cpp
+1481892046 source:e:\evacsim\evacsim\evacsim\src\objectscontainer.cpp
 	"ObjectsContainer.h"
+	<iostream>
 
 1471643808 source:e:\evacsim\evacsim\evacsim\src\polygongenerator.cpp
 	"PolygonGenerator.h"
@@ -4646,7 +4648,7 @@
 	<stdlib.h>
 	<Box2D/Box2D.h>
 
-1476302621 source:e:\evacsim\evacsim\evacsim\src\renderer.cpp
+1481826805 source:e:\evacsim\evacsim\evacsim\src\renderer.cpp
 	"Renderer.h"
 	"Camera.h"
 
@@ -4662,7 +4664,7 @@
 	"Sector.h"
 	"iostream"
 
-1479076537 source:e:\evacsim\evacsim\evacsim\src\sensor.cpp
+1481894284 source:e:\evacsim\evacsim\evacsim\src\sensor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Sensor.h"
@@ -4679,7 +4681,7 @@
 	"Mmath.h"
 	"stdio.h"
 
-1479294285 source:e:\evacsim\evacsim\evacsim\src\world.cpp
+1481895652 source:e:\evacsim\evacsim\evacsim\src\world.cpp
 	"World.h"
 	"Object.h"
 	"Renderer.h"
@@ -4693,6 +4695,7 @@
 	"CommunicationBridge.h"
 	<Box2D/Box2D.h>
 	<thread>
+	<typeinfo>
 
 1479074448 e:\evacsim\evacsim\evacsim\include\maindirection.h
 	"World.h"

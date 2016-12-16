@@ -3,6 +3,7 @@
 #include <iostream>
 #include <pthread.h>
 #include <thread>
+#include <chrono>
 
 
 
@@ -15,32 +16,29 @@ using namespace std;
 
 void termin()
 {
-    cout<<"Blad z dupy"<<endl;
+    cout<<"Blad"<<endl;
     //  exit(0);
 }
 
 void (*old_terminate)() = set_terminate(termin);
 
-void foo()
-{
-  cout<<"lamy lamy lamy"<<endl;
-}
-
-void testThread(int dupa){
-    cout<<"DUPA : "<<dupa<<endl;
-}
 
 int main()
 {
-
     try
     {
-        //thread first(foo);
-       // first.join();
+
+
+// code to benchmark
+
 
         srand (static_cast <unsigned> (time(0)));
         Game gra;
+        auto beginTime = std::chrono::high_resolution_clock::now();
         gra.gameOn();
+        auto endTime = std::chrono::high_resolution_clock::now();
+        double time = (double)(std::chrono::duration_cast<std::chrono::milliseconds>(endTime-beginTime).count()) / 1000;
+        std::cout <<std::endl<<"Czas symulacji: "<< time << "s" << std::endl;
     }
     catch(...)
     {

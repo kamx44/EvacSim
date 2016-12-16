@@ -1,4 +1,5 @@
 #include "ObjectsContainer.h"
+#include <iostream>
 
 ObjectsContainer::ObjectsContainer()
 {
@@ -12,32 +13,24 @@ ObjectsContainer::~ObjectsContainer()
 
 void ObjectsContainer::addObject(Object *object)
 {
-    container.push_back(object);
+    container.insert(std::make_pair(object->getId(),object));
 }
 
 
 void ObjectsContainer::deleteObject(Object *object)
 {
-    for(unsigned int i=0; i<container.size(); i++)
-    {
-        if(object==container[i])
+    auto search = container.find(object->getId());
+    if(search != container.end()){
+        if(object->object_type==OBJECT_TYPE::ACTOR)
         {
-            if(object->isPlayer==true)
-            {
-                object->destroyBody();
-                container.clear();
-                object->drawable=false;
-                delete object;
-               // playerAlive=false;
-            }
-            else
-            {
-                object->destroyBody();
-                container.erase(container.begin()+i);
-                object->drawable=false;
-                delete object;
-            }
+           std::cout<<"lama";
         }
+        object->delObject();
+        object->destroyBody();
+        container.erase(object->getId());
+        object->drawable=false;
+        //delete object;
+        //object = NULL;
     }
 }
 
@@ -48,3 +41,7 @@ int ObjectsContainer::getSize(){
 Object* ObjectsContainer::getObjectByIndex(int index){
     return container.at(index);
 }
+
+ std::unordered_map<unsigned int,Object*> ObjectsContainer::getContainer(){
+    return container;
+ }

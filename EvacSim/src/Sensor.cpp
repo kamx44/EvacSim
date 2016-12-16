@@ -71,7 +71,14 @@ Sensor::Sensor(sensorType type,OBJECT_TYPE sensor_type,glm::vec2 position,float 
 
 Sensor::~Sensor()
 {
-    //dtor
+    while(!obstacleSensorContainer.empty()){
+        obstacleSensorContainer.begin()->second->isAlive=false;
+        unsigned int id = obstacleSensorContainer.begin()->first;
+        obstacleSensorContainer.begin()->second->destroyBody();
+        delete obstacleSensorContainer.begin()->second;
+        obstacleSensorContainer.begin()->second = NULL;
+        obstacleSensorContainer.erase(id);
+    }
 }
 void Sensor::draw()
 {
@@ -107,6 +114,11 @@ void Sensor::draw()
         }
         glEnd();
         glPopMatrix ();
+        if(!obstacleSensorContainer.empty()){
+            for(auto obstacleSensor : obstacleSensorContainer){
+                obstacleSensor.second->draw();
+            }
+        }
 }
 
 void Sensor::update(float dt)
@@ -148,13 +160,25 @@ void Sensor::update(float dt)
     }
 
     setParameters(dt);
-
     if(object_type==OBJECT_TYPE::SENSOR_SIGHT){ //create one function
         createObstacleSensorsExit();
     } else if(object_type==OBJECT_TYPE::SENSOR_COMMUNICATION){
         createObstacleSensorsActors();
     }
-
+    if(!obstacleSensorContainer.empty()){
+        for (auto it = obstacleSensorContainer.begin(); it != obstacleSensorContainer.end(); ) {
+            if((*it).second->isAlive == false){
+                unsigned int id = (*it).first;
+                (*it).second->destroyBody();
+                delete (*it).second;
+                (*it).second = NULL;
+                it = obstacleSensorContainer.erase(it);
+            }else{
+                (*it).second->update(0.1f);
+                it++;
+            }
+        }
+    }
 
 }
 
@@ -196,10 +220,6 @@ void Sensor::addObjectIdPos(unsigned int visibleObjectId,b2Vec2 position){
         visibleObjectsIdPosContainer->push_back(visibleObject);
     }
     m1.unlock();
-//    if(visibleObjectsIdPosContainer.count(visibleObjectId) == 0){
-//        std::pair<unsigned int,b2Vec2> visibleObject(visibleObjectId,position);
-
-//    }
 }
 
 void Sensor::removeObjectId(unsigned int visibleObjectId){
@@ -244,18 +264,18 @@ void Sensor::addObjectToCheckActorContainer(unsigned int visibleObjectId, b2Vec2
 }
 
 bool Sensor::removeObjectFromCheckExitContainer(unsigned int visibleObjectIdExit, unsigned int visibleObjectIdSensor){
-    //if(!checkExitContainer.empty() && (checkExitContainer.count(visibleObjectIdExit) > 0) && (obstacleSensorContainer.count(visibleObjectIdSensor) > 0)){
+    if(!checkExitContainer.empty() && (checkExitContainer.count(visibleObjectIdExit) > 0) && (obstacleSensorContainer.count(visibleObjectIdSensor) > 0)){
         checkExitContainer.erase(visibleObjectIdExit);
-        obstacleSensorContainer.erase(visibleObjectIdSensor);
+        //obstacleSensorContainer//.erase(visibleObjectIdSensor);
         return true;
-    //}else
-    //    return false;
+    }else
+        return false;
 }
 
 bool Sensor::removeObjectFromCheckActorContainer(unsigned int visibleObjectIdActor, unsigned int visibleObjectIdSensor){
     if(!checkActorContainer.empty() && (checkActorContainer.count(visibleObjectIdActor) > 0) && (obstacleSensorContainer.count(visibleObjectIdSensor) > 0)){
         checkActorContainer.erase(visibleObjectIdActor);
-        obstacleSensorContainer.erase(visibleObjectIdSensor);
+        //obstacleSensorContainer.erase(visibleObjectIdSensor);
         return true;
     }else
         return false;
@@ -263,7 +283,7 @@ bool Sensor::removeObjectFromCheckActorContainer(unsigned int visibleObjectIdAct
 
 
 void Sensor::sendObstacleSensor(b2Vec2 destination){
-    b2Vec2 vel = multiplyB2Vec2(normalize(destination - body->GetPosition()),100);
+    b2Vec2 vel = multiplyB2Vec2(normalize(destination - body->GetPosition()),100000);
     moveBody(vel);
     //std::cout<<"SSS"<<std::endl;
     //obstacleSensor->moveBody(vel);
@@ -329,16 +349,24 @@ void Sensor::createObstacleSensorsExit(){
         if(onePair.second.first == false){
             Sensor* obstacleSensor = new Sensor(sensorType::OBSTACLE_EXIT,OBJECT_TYPE::SENSOR_OBSTACLE,createGlmVec(body->GetPosition()),0.1f,1,objContainer);
             //obstacleSensor->setDrawable(false);
-            std::cout<<"Tworze sensor EXIT"<<std::endl;
+            //std::cout<<"Tworze sensor EXIT"<<std::endl;
+            /*if(firstShootExit){
+                obstacleSensor->isAlive = false;
+                firstShootExit = false;
+            }*/
             std::pair<unsigned int, Sensor*> para(obstacleSensor->getId(),obstacleSensor);
             obstacleSensorContainer.insert(para);
             //std::make_pair(obstacleSensor->getId(),obstacleSensor)
             obstacleSensor->setParentSensor(this);
-            objContainer->addObject(obstacleSensor);
+            //objContainer->addObject(obstacleSensor);
             obstacleSensor->sendObstacleSensor(onePair.second.second);
             obstacleSensor->setWhereIWasSend(onePair.first);
             std::pair<bool,b2Vec2> positionPair(true,onePair.second.second);
             checkExitContainer[onePair.first] = positionPair;
+            /*if(firstShootExit){
+                obstacleSensor->isAlive = false;
+                firstShootExit = false;
+            } */
         }
     }
 }
@@ -348,16 +376,26 @@ void Sensor::createObstacleSensorsActors(){
         if(onePair.second.first == false){
             Sensor* obstacleSensor = new Sensor(sensorType::OBSTACLE_ACTOR,OBJECT_TYPE::SENSOR_OBSTACLE,createGlmVec(body->GetPosition()),0.1f,1,objContainer);
             //obstacleSensor->type = sensorType::OBSTACLE_ACTOR;
-            std::cout<<"Tworze sensor ACTOR"<<std::endl;
+            //std::cout<<"Tworze sensor ACTOR"<<std::endl;
+            /*if(firstShootActor){
+                obstacleSensor->isAlive = false;
+                firstShootActor = false;
+            }*/
             std::pair<unsigned int, Sensor*> para(obstacleSensor->getId(),obstacleSensor);
             obstacleSensorContainer.insert(para);
             //std::make_pair(obstacleSensor->getId(),obstacleSensor)
             obstacleSensor->setParentSensor(this);
-            objContainer->addObject(obstacleSensor);
+            //obstacleSensor->isAlive = false;
+            //objContainer->addObject(obstacleSensor);
             obstacleSensor->sendObstacleSensor(onePair.second.second);
             obstacleSensor->setWhereIWasSend(onePair.first);
             std::pair<bool,b2Vec2> positionPair(true,onePair.second.second);
             checkActorContainer[onePair.first] = positionPair;
+
+            /*if(firstShootActor){
+                obstacleSensor->isAlive = false;
+                firstShootActor = false;
+            } */
         }
     }
 }

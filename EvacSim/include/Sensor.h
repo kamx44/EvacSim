@@ -21,11 +21,29 @@ class Sensor : public Object
                unsigned int idParent,
                ObjectsContainer* objContainer);
         virtual ~Sensor();
-        void update(float dt);
-        void draw();
+        virtual void update(float dt);
+        virtual void draw();
         virtual void delObject()
         {
             //world_actor->delFromObjectsContainer(this);
+            while(!obstacleSensorContainer.empty()){
+                //(obstacleSensorContainer.begin()->second)->delObject();
+
+                //objContainer->deleteObject(obstacleSensorContainer.begin()->second);
+                //obstacleSensorContainer.begin()->second->isAlive=false;
+                //obstacleSensorContainer.erase(obstacleSensorContainer.begin()->first);
+                while(!obstacleSensorContainer.empty()){
+                //(obstacleSensorContainer.begin()->second)->delObject();
+                    obstacleSensorContainer.begin()->second->isAlive=false;
+                    unsigned int id = obstacleSensorContainer.begin()->first;
+                    obstacleSensorContainer.begin()->second->destroyBody();
+                    delete obstacleSensorContainer.begin()->second;
+                    obstacleSensorContainer.begin()->second = NULL;
+                    //objContainer->deleteObject(obstacleSensorContainer.begin()->second);
+                    obstacleSensorContainer.erase(id);
+
+                }
+            }
         }
         b2Body* getBody();
         void addObjectId(unsigned int visibleObjectId);
@@ -72,7 +90,8 @@ class Sensor : public Object
         Object* parentSensor;
         unsigned int whereIWasSend;
         MainDirection* mainDirection;
-
+        bool firstShootExit = true;
+        bool firstShootActor = true;
 };
 
 #endif // SENSOR_H

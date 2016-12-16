@@ -202,12 +202,12 @@ void Object::setParameters(float dt)
  ***********************************************/
 int Object::getRandomId()
 {
-    int i = rand() % 100000;
+    int i = (rand() % 100000)+2;
     std::pair<std::set<int>::iterator,bool> ret;
     ret = idContainer.insert(i);
     while (ret.second==false)
     {
-        i = rand() % 100000;
+        i = (rand() % 100000)+2;
         ret = idContainer.insert(i);
         //getRandomId();
         //std::cout<<"To id juz jest"<<std::endl;

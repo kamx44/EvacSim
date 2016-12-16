@@ -67,13 +67,11 @@ public:
     bool  isAlive;
     bool  drawable;                  //is ready to draw
     bool  isPlayer;
+    bool  hasObjectContainer;
 
     float staticFriction;           // tarcie statyczne
     float dynamicFriction;          // dynamiczne ...
     float restitution;              // opor powietrza?
-
-
-
 
     virtual void startContact()
     {

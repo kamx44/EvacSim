@@ -17,6 +17,7 @@ Actor::Actor(Sector* sector,ObjectsContainer* objContainer,CommunicationBridge* 
 {
 
     idObject = getRandomId();
+    this->objContainer = objContainer;
     object_type = OBJECT_TYPE::ACTOR;
     position = glm::vec2(getRandomInt(sector->getLeftDownCornerX()+2,sector->getLeftDownCornerX()+8),
                          getRandomInt(sector->getRightUpCornerY()-8,sector->getRightUpCornerY()-2));
@@ -26,7 +27,7 @@ Actor::Actor(Sector* sector,ObjectsContainer* objContainer,CommunicationBridge* 
     mainDirection = MainDirection();
 
     size = 3;
-    mass = 10;
+    mass = rand() % 50 +50;
     velocity = glm::vec2(0,0);//getRandomVec2(-4,4);
     moveForce = createB2vec2(getRandomVec2(-3,3));
     fOrientation = 0;
@@ -88,6 +89,22 @@ Actor::~Actor()
 {
     stop_thread = true;
     if(the_thread.joinable()) the_thread.join();
+    if(collisionSensor != NULL){
+            collisionSensor->isAlive=false;
+            objContainer->deleteObject(collisionSensor);
+    }
+    if(communicateSensor != NULL){
+            communicateSensor->isAlive=false;
+            objContainer->deleteObject(communicateSensor);
+    }
+    if(sightSensor != NULL){
+            sightSensor->isAlive=false;
+            objContainer->deleteObject(sightSensor);
+    }
+    if(moveSensor != NULL){
+            moveSensor->isAlive=false;
+            objContainer->deleteObject(moveSensor);
+    }
 }
 
 void Actor::draw()
@@ -166,8 +183,6 @@ void Actor::update(float dt)
 
 void Actor::calcSpeed()
 {
-
-
     b2Vec2 toTarget;
     toTarget.x=(1000*moveForce.x)+body->GetPosition().x;
     toTarget.y=(1000*moveForce.y)+body->GetPosition().y;
@@ -243,11 +258,14 @@ void Actor::addToCountsExitContainer(std::unordered_map<unsigned int, std::pair<
 void Actor::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightObjectsIds,std::vector<unsigned int>& a){
     using std::cout;
     using std::endl;
-    while(!stop_thread){
 
-        m1.lock();
+    while(!stop_thread){
+    try{
+        //m1.lock(); // zmienic na unique lock
+        std::unique_lock<mutex> locker(m1, std::defer_lock);
+        locker.lock();
             std::vector<std::pair<messageType,std::pair<unsigned int, b2Vec2> >> messagesList = communicationBridge->readMessage(idObject);
-        m1.unlock();
+        locker.unlock();
 
         std::unordered_map<unsigned int, std::pair<int,b2Vec2> > countsExitsContainer;
         for(message : messagesList){
@@ -259,13 +277,13 @@ void Actor::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
             }
         }
         if(mainDirection.id==0 || mainDirection.isPassed(passedExits)){
-            m1.lock(); //mozna sprawdzic ze jak bedzie iles wiecej to wtedy zmieni
+            locker.lock(); //mozna sprawdzic ze jak bedzie iles wiecej to wtedy zmieni
                 while(!inSightObjectsIds.empty()){
                     addToCountsExitContainer(countsExitsContainer,inSightObjectsIds[0].first,inSightObjectsIds[0].second);
                     inSightObjectsIds.pop_back();   //nie jestem pewien
                 }
                 int exitsSize = countsExitsContainer.size();
-            m1.unlock();
+            locker.unlock();
             bool found = false;
             std::pair<unsigned int, b2Vec2> exit;
             while(!found && exitsSize>0){
@@ -286,14 +304,15 @@ void Actor::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
                 }
             }
         }else if(mainDirection.id != 0){
-            moveForce = multiplyB2Vec2(normalize(mainDirection.position - body->GetPosition()),100);
+            if(body)
+                moveForce = multiplyB2Vec2(normalize(mainDirection.position - body->GetPosition()),100);
         }
-        m1.lock();
+        locker.lock();
         std::vector<unsigned int> actorsToCommunicate(actorsToCommunicateIds);
-        m1.unlock();
+        locker.unlock();
         while(!actorsToCommunicate.empty() && mainDirection.id!=0)  //niewiadomo czy zeruje
         {
-           m1.lock();
+           locker.lock();
            std::pair<unsigned int, b2Vec2> parka(mainDirection.id, mainDirection.position);
            if(mainDirection.isMainExit){
                 std::pair<messageType,std::pair<unsigned int, b2Vec2> > mes(messageType::MAIN_EXIT,parka);
@@ -303,10 +322,15 @@ void Actor::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
                 std::pair<messageType,std::pair<unsigned int, b2Vec2> > mes(messageType::EXIT,parka);
                 communicationBridge->sendMessage(actorsToCommunicate.at(0),mes);
            }
-           m1.unlock();
+           locker.unlock();
            actorsToCommunicate.pop_back();
         }
+        //m1.unlock();
         //std::this_thread::sleep_for( std::chrono::seconds(1) );
+    }catch(...){
+        std::cout<<"ERROR in thread"<<endl;
+        return;
+    }
     }
 }
 

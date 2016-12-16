@@ -12,6 +12,8 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add directory="include" />
 				</Compiler>
@@ -36,6 +38,7 @@
 			<Add option="-Wall" />
 			<Add option="-m32" />
 			<Add option="-std=gnu++11" />
+			<Add option="-g3" />
 			<Add directory="include" />
 			<Add directory="../dependencies/include" />
 		</Compiler>

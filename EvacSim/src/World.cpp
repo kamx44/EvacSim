@@ -11,8 +11,10 @@
 #include "CommunicationBridge.h"
 #include <Box2D/Box2D.h>
 #include <thread>
+#include <typeinfo>
 
 using namespace std;
+extern std::mutex m1;
 
 World::World()
 {
@@ -26,14 +28,11 @@ World::~World()
 
 b2World World::world = b2World(b2Vec2(0.0f,0.0f));
 
-
-
-
 int World::startGame()
 {
     //PolygonGenerator pol;
     initializeWorld();
-    playerAlive=true;
+    endOfSimulation=false;
     Renderer::getInstance();
     Events::getInstance();
     Renderer::getInstance().world=this;
@@ -43,55 +42,34 @@ int World::startGame()
 //adding objects
 
     Cursor* cursor = new Cursor();
-    // player1->playerCursors.push_back(cursor);
-    // player1->mainCursor = cursor;
     objectsContainer->addObject(cursor);
-
     Boundary* boundaries = new Boundary();
     objectsContainer->addObject(boundaries);
-    //void (World::*addToObjectsContainerPointer)(Object*);
-    //addToObjectsContainerPointer = &World::addToObjectsContainer;
     Building* building = new Building(objectsContainer);
     building->createRooms();
-    //createActors(3,building);
-
     CommunicationBridge* communicationBridge = new CommunicationBridge();
-    for(int i=0; i<10; i++)
+    for(int i=0; i<4; i++)
     {
         if(Sector* freeSector = building->getFreeSector()){
             Actor* actor = new Actor(freeSector,objectsContainer,communicationBridge,cursor);
             objectsContainer->addObject(actor);
-            //std::thread functorTest(&Actor::run,*ast);
-            //std::thread tescik(Actor::testThread,44);
             actor->Start();
         }
     }
-    //world.GetBodyList()
-
-
-    /*wall = new Wall(glm::vec2(-40,0),glm::vec2(40,0),this);
-    addToObjectsContainer(wall); */
 
 
     int32 velocityIterations = 6;
     int32 positionIterations = 2;
-
     try
     {
-        //int i=0;
-        while(playerAlive)
+        while(!endOfSimulation)
         {
-            //cout<<"STEP: "<<i<<endl;
             world.Step(Renderer::getInstance().ratio, velocityIterations, positionIterations);
             moveAll();
             Renderer::getInstance().drawAll();
             if(!Events::getInstance().checkEvents()) return 0;
             //   Camera::getInstance().calculateCameraMovement();
             //   Camera::getInstance().moveCamera();
-
-          //  if (functorTest.joinable())
-          //      functorTest.join();
-          //i++;
         }
         cout<<"KONIEC GRY"<<endl;
     }
@@ -104,14 +82,22 @@ int World::startGame()
 
 void World::moveAll()
 {
+    bool found = false;
+    //m1.lock();
+    for(auto it : objectsContainer->getContainer()){
+        //cout<<"TYPE: "<<typeid(*it.second).name()<<"  ";
+        if(it.second->object_type == OBJECT_TYPE::ACTOR)
+            found = true;
+        if(it.second->isAlive==true)
+            it.second->update(Renderer::getInstance().ratio);
+        else{
 
-    for(int i=0; i<objectsContainer->getSize(); i++)
-    {
-        if(objectsContainer->getObjectByIndex(i)->isAlive==true)
-            objectsContainer->getObjectByIndex(i)->update(Renderer::getInstance().ratio);
-        else
-            objectsContainer->deleteObject(objectsContainer->getObjectByIndex(i));
+            objectsContainer->deleteObject(it.second);
+        }
     }
+   // m1.unlock();
+    if(!found)
+        endOfSimulation = true;
 }
 
 b2Body* World::addToWorld(b2BodyDef& bodyDef){
@@ -120,14 +106,5 @@ b2Body* World::addToWorld(b2BodyDef& bodyDef){
 }
 
 void World::createActors(int amount,Building* building){
- /*   for(int i=0; i<amount; i++)
-    {
-        if(Sector* freeSector = building->getFreeSector()){
-            Actor* ast = new Actor(freeSector,objectsContainer);
-            objectsContainer->addObject(ast);
-            thread functorTest;
-            thread functorTest(&Actor::run,*ast);
 
-        }
-    } */
 }

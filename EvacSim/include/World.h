@@ -22,7 +22,7 @@ public:
     ObjectsContainer* objectsContainer;
     ContactListener ContactListenerInstance;
     PolygonGenerator polygonGenerator;
-    bool playerAlive;
+    bool endOfSimulation;
     static b2Body* addToWorld(b2BodyDef& bodyDef);
     void moveAll();
     int startGame();
