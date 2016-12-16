@@ -49,9 +49,7 @@ Object::Object()
 {
 
     m_contacting = false;
-    hp = 10000000000;
     isAlive = true;
-    isPlayer=false;
     drawable = true;
 }
 
@@ -76,7 +74,6 @@ void Object::setToWorld()
 {
     b2Vec2 vel((float32)(velocity.x),(float32)(velocity.y));
     body->SetLinearVelocity(vel);
-   //body->ApplyLinearImpulse(vel, body->GetWorldCenter(), 1);
     body->SetUserData( this );
     body->SetAngularDamping(0.0f);
 }
@@ -105,7 +102,6 @@ void Object::destroyBody()
 {
     World::world.DestroyBody(body);
     body=nullptr;
-    //std::cout<<"usunieto body"<<std::endl;
 }
 
 /********************************************//**
@@ -182,8 +178,8 @@ void Object::setParameters(float dt)
     //-------------------------------------------------------
     // Integrate velocity (implicit linear velocity)
     //-------------------------------------------------------
-    velocity		+= force  * (inverseMass    * dt);
-    angularVelocity	+= torque * (inverseInertia * dt);
+//    velocity		+= force  * (inverseMass    * dt);
+    //angularVelocity	+= torque * (inverseInertia * dt);
 
     //-------------------------------------------------------
     // clear forces
@@ -209,13 +205,8 @@ int Object::getRandomId()
     {
         i = (rand() % 100000)+2;
         ret = idContainer.insert(i);
-        //getRandomId();
-        //std::cout<<"To id juz jest"<<std::endl;
     }
-        //std::cout<<"ID: "<<i<<std::endl;
-        return i;
-    //}
-    //return 0;
+    return i;
 }
 
 
@@ -238,16 +229,6 @@ void Object::delObject()
     std::cout<<"delete object"<<std::endl;
 }
 
-void Object::setDamage(float damage)
-{
-    hp -= (int)damage;
-//   std::cout<<"Dostał hita : "<<(int)damage<<" zostalo: "<<hp<<std::endl;
-
-    if(hp<=0)
-    {
-        isAlive=false;
-    }
-}
 
 
 OBJECT_TYPE Object::getEntityType()

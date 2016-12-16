@@ -11,7 +11,6 @@ Room::Room(ObjectsContainer* objectsContainer,std::vector<pair<glm::vec2,glm::ve
 {
     this->objectsContainer = objectsContainer;
     this->excRoomsContainer = excRoomsContainer;
-    //createSectors();
     vertices = new glm::vec2[4];
     this->vertices[1] = leftDownCorner;
     this->vertices[3] = rightUpCorner;

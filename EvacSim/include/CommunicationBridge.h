@@ -1,7 +1,7 @@
 #ifndef COMMUNICATIONBRIDGE_H
 #define COMMUNICATIONBRIDGE_H
 #include <unordered_map>
-#include "Actor.h"
+#include "Agent.h"
 
 enum messageType{
     NOEXIT,

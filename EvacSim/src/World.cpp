@@ -1,10 +1,8 @@
 #include "World.h"
 #include "Object.h"
 #include "Renderer.h"
-#include "Camera.h"
 #include "Events.h"
-#include "PolygonGenerator.h"
-#include "Actor.h"
+#include "Agent.h"
 #include "Boundary.h"
 #include "Sector.h"
 #include "Building.h"
@@ -30,12 +28,11 @@ b2World World::world = b2World(b2Vec2(0.0f,0.0f));
 
 int World::startGame()
 {
-    //PolygonGenerator pol;
     initializeWorld();
     endOfSimulation=false;
     Renderer::getInstance();
     Events::getInstance();
-    Renderer::getInstance().world=this;
+    //Renderer::getInstance().world=this;
     Renderer::getInstance().setObjectsContainer(objectsContainer);
     world.SetContactListener(&ContactListenerInstance);
 
@@ -51,7 +48,7 @@ int World::startGame()
     for(int i=0; i<4; i++)
     {
         if(Sector* freeSector = building->getFreeSector()){
-            Actor* actor = new Actor(freeSector,objectsContainer,communicationBridge,cursor);
+            Agent* actor = new Agent(freeSector,objectsContainer,communicationBridge,cursor);
             objectsContainer->addObject(actor);
             actor->Start();
         }
@@ -68,8 +65,6 @@ int World::startGame()
             moveAll();
             Renderer::getInstance().drawAll();
             if(!Events::getInstance().checkEvents()) return 0;
-            //   Camera::getInstance().calculateCameraMovement();
-            //   Camera::getInstance().moveCamera();
         }
         cout<<"KONIEC GRY"<<endl;
     }
@@ -105,6 +100,6 @@ b2Body* World::addToWorld(b2BodyDef& bodyDef){
     return bod; //return pointer to body
 }
 
-void World::createActors(int amount,Building* building){
+void World::createAgents(int amount,Building* building){
 
 }

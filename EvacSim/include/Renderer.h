@@ -23,7 +23,6 @@
 #include "Cursor.h"
 
 #include "Object.h"
-#include "Image.h"
 #include "World.h"
 #include "ObjectsContainer.h"
 
@@ -69,11 +68,10 @@ public:
     void DrawQuadTexture(float x, float y, float w, float h,float angle, unsigned int texture_id);
     void drawPoint(float x, float y);
     void setObjectsContainer(ObjectsContainer *objContainer);
-    Image statek;
 
 
     //      int addObject(Object* aa );
-    World* world;
+    //World* world;
 
 
 private:

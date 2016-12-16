@@ -3,10 +3,6 @@
 
 #include "Module.h"
 #include "glm/common.hpp"
-#include "PolygonGenerator.h"
-
-
-#include "Image.h"
 #include "Object.h"
 
 
@@ -24,17 +20,13 @@ public:
     void calcSpeed();
     void draw();
     void update(float dt);
-
-     virtual void delObject()
-    {
-        //world_actor->delFromObjectsContainer(this);
-    }
+    virtual void delObject(){}
     b2Vec2 getPosition();
 
 
 protected:
 private:
-    int32 size;
+    //int32 size;
     b2CircleShape circle;
     float radius;
 

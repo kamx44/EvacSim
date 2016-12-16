@@ -23,40 +23,19 @@ class Sensor : public Object
         virtual ~Sensor();
         virtual void update(float dt);
         virtual void draw();
-        virtual void delObject()
-        {
-            //world_actor->delFromObjectsContainer(this);
-            while(!obstacleSensorContainer.empty()){
-                //(obstacleSensorContainer.begin()->second)->delObject();
-
-                //objContainer->deleteObject(obstacleSensorContainer.begin()->second);
-                //obstacleSensorContainer.begin()->second->isAlive=false;
-                //obstacleSensorContainer.erase(obstacleSensorContainer.begin()->first);
-                while(!obstacleSensorContainer.empty()){
-                //(obstacleSensorContainer.begin()->second)->delObject();
-                    obstacleSensorContainer.begin()->second->isAlive=false;
-                    unsigned int id = obstacleSensorContainer.begin()->first;
-                    obstacleSensorContainer.begin()->second->destroyBody();
-                    delete obstacleSensorContainer.begin()->second;
-                    obstacleSensorContainer.begin()->second = NULL;
-                    //objContainer->deleteObject(obstacleSensorContainer.begin()->second);
-                    obstacleSensorContainer.erase(id);
-
-                }
-            }
-        }
+        virtual void delObject(){}
         b2Body* getBody();
         void addObjectId(unsigned int visibleObjectId);
         void addObjectIdPos(unsigned int visibleObjectId, b2Vec2 position);
         void addObjectToCheckExitContainer(unsigned int visibleObjectId, b2Vec2 position);
-        void addObjectToCheckActorContainer(unsigned int visibleObjectId, b2Vec2 position);
+        void addObjectToCheckAgentContainer(unsigned int visibleObjectId, b2Vec2 position);
         bool removeObjectFromCheckExitContainer(unsigned int visibleObjectIdExit, unsigned int visibleObjectIdSensor);
-        bool removeObjectFromCheckActorContainer(unsigned int visibleObjectIdActor, unsigned int visibleObjectIdSensor);
+        bool removeObjectFromCheckAgentContainer(unsigned int visibleObjectIdAgent, unsigned int visibleObjectIdSensor);
         void removeObjectId(unsigned int visibleObjectId);
         void removeObjectIdPos(unsigned int visibleObjectId);
         void sendObstacleSensor(b2Vec2 destination);
         void createObstacleSensorsExit();
-        void createObstacleSensorsActors();
+        void createObstacleSensorsAgents();
         void moveBody(b2Vec2 velocity);
         unsigned int getParentId();
         void printData(); //for testing
@@ -81,7 +60,7 @@ class Sensor : public Object
         std::vector<unsigned int>* visibleObjectsIdContainer;
         std::vector<std::pair<unsigned int,b2Vec2> >* visibleObjectsIdPosContainer;
         std::unordered_map<unsigned int, std::pair<bool,b2Vec2> > checkExitContainer;
-        std::unordered_map<unsigned int, std::pair<bool,b2Vec2> > checkActorContainer; // add freeSensor bool
+        std::unordered_map<unsigned int, std::pair<bool,b2Vec2> > checkAgentContainer; // add freeSensor bool
         std::unordered_map<unsigned int, Sensor*> obstacleSensorContainer;
         float radiusMovable;
         b2Vec2* pushForce;
@@ -91,7 +70,7 @@ class Sensor : public Object
         unsigned int whereIWasSend;
         MainDirection* mainDirection;
         bool firstShootExit = true;
-        bool firstShootActor = true;
+        bool firstShootAgent = true;
 };
 
 #endif // SENSOR_H

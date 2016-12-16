@@ -2,10 +2,8 @@
 #define WORLD_H
 
 #include <vector>
-
 #include "ContactListener.h"
-#include "PolygonGenerator.h"
-//#include "ObjectsContainer.h"
+
 
 
 
@@ -21,21 +19,18 @@ public:
     virtual ~World();
     ObjectsContainer* objectsContainer;
     ContactListener ContactListenerInstance;
-    PolygonGenerator polygonGenerator;
     bool endOfSimulation;
+    static b2World world;
     static b2Body* addToWorld(b2BodyDef& bodyDef);
     void moveAll();
     int startGame();
-    void createActors(int amount,Building* building);
-
-   // b2Vec2 gravity;
+    void createAgents(int amount,Building* building);
     static void initializeWorld(){
         world.SetGravity(b2Vec2(0.0f,0.0f));
     }
-    static b2World world;
 protected:
 private:
-    //static b2Vec2 gravity();
+
 
 };
 

@@ -14,7 +14,6 @@ Sector::Sector(glm::vec2 leftDownCorner,glm::vec2 rightUpCorner)
     vertices[0].y = vertices[1].y;
     vertices[2].x = vertices[1].x;
     vertices[2].y = vertices[3].y;
-    //cout<<"Sector "<<counter<<" lC: ("<<leftDownCorner.x<<","<<leftDownCorner.y<<") rC: ("<<rightUpCorner.x<<","<<rightUpCorner.y<<")"<<endl;
 }
 
 Sector::~Sector()

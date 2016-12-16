@@ -1,8 +1,6 @@
 #ifndef EVENTS_H
 #define EVENTS_H
 #include <SDL2/SDL.h>
-#include <CEGUI/CEGUI.h>
-#include <CEGUI/RendererModules/OpenGL/GLRenderer.h>
 
 class Events
 {

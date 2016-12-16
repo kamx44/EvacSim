@@ -16,8 +16,6 @@ public:
     void EndContact(b2Contact* contact);
     void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
     void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
-
-//    glm::vec2 vertices;
 };
-//d
+
 #endif // CONTACTLISTENER_H

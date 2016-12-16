@@ -1,5 +1,4 @@
 #include "Renderer.h"
-#include "Camera.h"
 
 
 Renderer::Renderer()
@@ -10,7 +9,7 @@ Renderer::Renderer()
     initOpenGL();
     ratio = 0;
     last_time = 0;
-    statek.imageID = statek.imgToTexture("data/img/statek.png");
+
 }
 
 Renderer& Renderer::getInstance()   // singletone pattern
@@ -62,12 +61,9 @@ void Renderer::drawAll()
     glLoadIdentity();
     b2Vec2 pos = objectsContainer->getObjectByIndex(1)->body->GetPosition();
     glTranslatef(-pos.x,-pos.y,-30);  //minus variables because bodies position is inverted against to opengl map
-    //  glTranslatef(0,0,-30);
 
     drawAxis(0,0,0);
     glColor3f( 0.0, 1.0, 1.0 );
-    //objectsContainer->getObjectByIndex(2)->draw();
-    //glTranslatef(0.0f, 0.0f, -15.0f);
     for(auto it : objectsContainer->getContainer())
     {
         if(it.second->drawable==true)

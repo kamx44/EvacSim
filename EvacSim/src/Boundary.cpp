@@ -7,7 +7,7 @@
 Boundary::Boundary()
 {
     idObject = getRandomId();
-    //object_type = OBJECT_TYPE::ACTOR;
+    object_type = OBJECT_TYPE::BOUNDARY;
     position = glm::vec2(0,0);
     velocity = glm::vec2(0,0);
     fOrientation = 33;
@@ -26,7 +26,6 @@ Boundary::Boundary()
     fixtureDef.friction = 0.3f;
     fixtureDef.filter.categoryBits = 0x0004;
     fixtureDef.filter.maskBits = 0x0002;
-   // circle.m_p.Set(position[0], position[1]);
     body = World::addToWorld(bodyDef);
     setToWorld();
     setFixtureToBody();
@@ -43,12 +42,7 @@ void Boundary::draw()
 {
     float x = position[0];
     float y = position[1];
-    //int vc = vertexCount;
     float angle = fOrientation;
-
-    // tego tu nie ma byæ morf
-    //     world->actors[i]->move();
-
 
     glPushMatrix ();
     glLineWidth (3.0f);
