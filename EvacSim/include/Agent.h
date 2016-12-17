@@ -28,30 +28,8 @@ public:
     void calcSpeed();
     void draw();
     void createJoint(b2Body* bodyB);
-    virtual void delObject()
-    {
-        stop_thread = true;
-        if(collisionSensor){
-            //collisionSensor->delObject();
-            collisionSensor->isAlive=false;
-            //objContainer->deleteObject(collisionSensor);
-        }
-        if(communicateSensor){
-            //communicateSensor->delObject();
-            communicateSensor->isAlive=false;
-            //objContainer->deleteObject(communicateSensor);
-        }
-        if(sightSensor){
-            //sightSensor->delObject();
-            sightSensor->isAlive=false;
-            //objContainer->deleteObject(sightSensor);
-        }
-        if(moveSensor){
-            //moveSensor->delObject();
-            moveSensor->isAlive=false;
-            //objContainer->deleteObject(moveSensor);
-        }
-    }
+    virtual void delObject();
+
 
     void communication(std::vector<std::pair<unsigned int,b2Vec2> >&,std::vector<unsigned int>&);
     void setPassedExit(unsigned int);
@@ -72,6 +50,7 @@ private:
     ObjectsContainer* objContainer;
     std::vector<std::pair<unsigned int,b2Vec2> > inSightObjectsIds;
     std::vector<unsigned int> actorsToCommunicateIds;
+    std::set<Sensor*> sensors;
     std::string readBuffer;
     int32 size;
     b2CircleShape circle;
@@ -86,7 +65,6 @@ private:
     std::thread the_thread;
     bool stop_thread = false;
     Cursor* cursor;
-    bool rotateBody;
     std::set<unsigned int> passedExits;
     MainDirection mainDirection;
     b2Vec2 previousPosition;

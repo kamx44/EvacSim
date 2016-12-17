@@ -61,6 +61,8 @@ void ContactListener::BeginContact(b2Contact* contact)
         Sensor* parent = dynamic_cast<Sensor*>(sensor->getParentSensor());
         if(parent->removeObjectFromCheckExitContainer(sensor->getWhereIWasSend(),sensor->getId())){
            sensor->isAlive=false;
+        }else if(parent->removeObjectFromCheckAgentContainer(sensor->getWhereIWasSend(),sensor->getId())){
+           sensor->isAlive=false;
         }
     }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::ACTOR && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_OBSTACLE)
     {
@@ -76,7 +78,13 @@ void ContactListener::BeginContact(b2Contact* contact)
                 }
             }
         }
-    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_OBSTACLE)
+    }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
+    {
+        Agent* actor = dynamic_cast<Agent*>( bodyUserDataB );
+        Exit* exit = dynamic_cast<Exit*>( bodyUserDataA );
+        actor->setPassedExit(exit->getId());
+    }
+    else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_OBSTACLE)
     {
         Exit* exit = dynamic_cast<Exit*>( bodyUserDataA );
         Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
@@ -119,7 +127,6 @@ void ContactListener::EndContact(b2Contact* contact)
         exit->endContact();
     }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL && bodyUserDataB->getEntityType()==OBJECT_TYPE::SENSOR_MOVE){
             Sensor* sensor = dynamic_cast<Sensor*>( bodyUserDataB );
-            sensor->rotateBody=true;
     }else if(bodyUserDataA->getEntityType()==OBJECT_TYPE::WALL_EXIT && bodyUserDataB->getEntityType()==OBJECT_TYPE::ACTOR)
     {
         Agent* actor = dynamic_cast<Agent*>( bodyUserDataB );
@@ -127,7 +134,7 @@ void ContactListener::EndContact(b2Contact* contact)
         actor->startContact();
         exit->startContact();
         b2Vec2 pos = exit->body->GetPosition();
-        actor->setPassedExit(exit->getId());
+        //actor->setPassedExit(exit->getId());
         if(exit->mainExit){
             actor->isAlive=false;
         }

@@ -45,7 +45,7 @@ int World::startGame()
     Building* building = new Building(objectsContainer);
     building->createRooms();
     CommunicationBridge* communicationBridge = new CommunicationBridge();
-    for(int i=0; i<4; i++)
+    for(int i=0; i<25; i++)
     {
         if(Sector* freeSector = building->getFreeSector()){
             Agent* actor = new Agent(freeSector,objectsContainer,communicationBridge,cursor);
@@ -55,8 +55,8 @@ int World::startGame()
     }
 
 
-    int32 velocityIterations = 6;
-    int32 positionIterations = 2;
+    int32 velocityIterations = 60;
+    int32 positionIterations = 20;
     try
     {
         while(!endOfSimulation)

@@ -8,6 +8,7 @@
 #include "Mmath.h"
 #include "stdio.h"
 #include <typeinfo>
+#include "SensorFactory.h"
 
 
 
@@ -45,28 +46,33 @@ Agent::Agent(Sector* sector,ObjectsContainer* objContainer,CommunicationBridge* 
     setFixtureToBody();
     body->GetMass();
     drawable = true;
-    communicateSensor = new Sensor(sensorType::NORMAL,OBJECT_TYPE::SENSOR_COMMUNICATION,position,40.0f,idObject,objContainer);
+    //Sensor* s = new Sensor(sensorType::COMMUNICATE_SENSOR,OBJECT_TYPE::SENSOR_COMMUNICATION,position,40.0f);
+    communicateSensor = SensorFactory::createSensor(sensorType::COMMUNICATE_SENSOR,position,40.0f);
     communicateSensor->setVisibleObjectsIdContainer(actorsToCommunicateIds);
     //communicateSensor->setDrawable(false);
-    objContainer->addObject(communicateSensor);
+    //objContainer->addObject(communicateSensor);
+    sensors.insert(communicateSensor);
     createJoint(communicateSensor->getBody());
-    sightSensor = new Sensor(sensorType::NORMAL,OBJECT_TYPE::SENSOR_SIGHT,position,40.0f,idObject,objContainer);
+    sightSensor = SensorFactory::createSensor(sensorType::SIGHT_SENSOR,position,40.0f);
     sightSensor->setVisibleObjectsIdPosContainer(inSightObjectsIds);
     sightSensor->setParentSensor(this);
     sightSensor->setParentMainDirection(mainDirection);
     //sightSensor->setDrawable(false);
-    objContainer->addObject(sightSensor);
+    //objContainer->addObject(sightSensor);
+    sensors.insert(sightSensor);
     createJoint(sightSensor->getBody());
-    collisionSensor = new Sensor(sensorType::NORMAL,OBJECT_TYPE::SENSOR_COLLISION,position,1.5f,idObject,objContainer);
+    collisionSensor = SensorFactory::createSensor(sensorType::COLLISION_SENSOR,position,1.5f);
     collisionSensor->setParentForce(&moveForce);
     collisionSensor->setParentSensor(this);
-    collisionSensor->setDrawable(false);
-    objContainer->addObject(collisionSensor);
+    collisionSensor->setDrawable(true);
+    //objContainer->addObject(collisionSensor);
+    sensors.insert(collisionSensor);
     createJoint(collisionSensor->getBody());
-    moveSensor = new Sensor(sensorType::NORMAL,OBJECT_TYPE::SENSOR_MOVE,position,4.0f,idObject,objContainer);
+    moveSensor = SensorFactory::createSensor(sensorType::MOVE_SENSOR,position,4.0f);
     moveSensor->setParentForce(&moveForce);
     moveSensor->setParentSensor(this);
-    objContainer->addObject(moveSensor);
+    //objContainer->addObject(moveSensor);
+    sensors.insert(moveSensor);
     createJoint(moveSensor->getBody());
     body->SetTransform( body->GetPosition(), 0 );
     previousPosition = body->GetPosition();
@@ -80,19 +86,77 @@ Agent::~Agent()
     if(the_thread.joinable()) the_thread.join();
     if(collisionSensor != NULL){
             collisionSensor->isAlive=false;
-            objContainer->deleteObject(collisionSensor);
+            collisionSensor->delObject();
+            collisionSensor->destroyBody();
+            delete collisionSensor;
+            collisionSensor = NULL;
+            //objContainer->deleteObject(collisionSensor);
     }
     if(communicateSensor != NULL){
             communicateSensor->isAlive=false;
-            objContainer->deleteObject(communicateSensor);
+            communicateSensor->delObject();
+            communicateSensor->destroyBody();
+            delete communicateSensor;
+            communicateSensor = NULL;
+            //objContainer->deleteObject(communicateSensor);
     }
     if(sightSensor != NULL){
             sightSensor->isAlive=false;
-            objContainer->deleteObject(sightSensor);
+            sightSensor->delObject();
+            sightSensor->destroyBody();
+            delete sightSensor;
+            sightSensor = NULL;
+            //objContainer->deleteObject(sightSensor);
     }
     if(moveSensor != NULL){
             moveSensor->isAlive=false;
-            objContainer->deleteObject(moveSensor);
+            moveSensor->delObject();
+            moveSensor->destroyBody();
+            delete moveSensor;
+            moveSensor = NULL;
+            //objContainer->deleteObject(moveSensor);
+    }
+}
+
+void Agent::delObject(){
+    stop_thread = true;
+    if(the_thread.joinable()) the_thread.join();
+    if(collisionSensor != NULL){
+            collisionSensor->isAlive=false;
+            collisionSensor->delObject();
+
+            //World::world.DestroyJoint(collisionSensor->getBody()->GetJointList()->joint);
+            //collisionSensor->destroyBody();
+            //delete collisionSensor;
+            //collisionSensor = NULL;
+            //objContainer->deleteObject(collisionSensor);
+    }
+    if(communicateSensor != NULL){
+            communicateSensor->isAlive=false;
+            communicateSensor->delObject();
+            //World::world.DestroyJoint(communicateSensor->getBody()->GetJointList()->joint);
+            //communicateSensor->destroyBody();
+            //delete communicateSensor;
+            //communicateSensor = NULL;
+            //objContainer->deleteObject(communicateSensor);
+    }
+    if(sightSensor != NULL){
+            sightSensor->isAlive=false;
+            sightSensor->delObject();
+            //World::world.DestroyJoint(sightSensor->getBody()->GetJointList()->joint);
+            //sightSensor->destroyBody();
+            //delete sightSensor;
+            //sightSensor = NULL;
+            //objContainer->deleteObject(sightSensor);
+    }
+    if(moveSensor != NULL){
+            moveSensor->isAlive=false;
+            moveSensor->delObject();
+            //World::world.DestroyJoint(moveSensor->getBody()->GetJointList()->joint);
+            //moveSensor->destroyBody();
+            //delete moveSensor;
+            //moveSensor = NULL;
+            //objContainer->deleteObject(moveSensor);
     }
 }
 
@@ -117,6 +181,11 @@ void Agent::draw()
         }
         glEnd();
         glPopMatrix ();
+        if(!sensors.empty()){
+            for(auto sensor : sensors)
+                sensor->draw();
+        }
+
 }
 
 void Agent::update(float dt)
@@ -138,33 +207,42 @@ void Agent::update(float dt)
     //body->ApplyAngularImpulse(33,true);
     //body->
     //cout<<"FORCE: x:"<<moveForce.x<<" y: "<<moveForce.y<<endl;
-    if(constPositionCounter > 5){
+    if(constPositionCounter > 2){
         resetToBeggining();
         constPositionCounter = 0;
     }
-        setParameters(dt);
-        setOrientation(fOrientation);
-        calcSpeed();
-        b2Vec2 norm = normalize(moveForce);
-        if(norm.x>-0.5f && norm.x<0.5f){
-            if(norm.x<=0)
-                norm.x-=0.25;
-            else
-                norm.x+=0.25;
-        }
-        if(norm.y>-0.5f && norm.y<0.5f){
-            if(norm.y<=0)
-                norm.y-=0.25;
-            else
-                norm.y+=0.25;
-        }
+    setParameters(dt);
+    setOrientation(fOrientation);
+    calcSpeed();
+    b2Vec2 norm = normalize(moveForce);
+    if(norm.x>-0.5f && norm.x<0.5f){
+        if(norm.x<=0)
+            norm.x-=0.25;
+        else
+            norm.x+=0.25;
+    }
+    if(norm.y>-0.5f && norm.y<0.5f){
+        if(norm.y<=0)
+            norm.y-=0.25;
+        else
+            norm.y+=0.25;
+    }
 
-        body->ApplyForce(multiplyB2Vec2(norm,10),body->GetWorldCenter(),true);
-        if(body->GetPosition()==previousPosition){
-            constPositionCounter++;
-        }else
-            constPositionCounter=0;
-        previousPosition = body->GetPosition();
+    body->ApplyForce(multiplyB2Vec2(norm,10),body->GetWorldCenter(),true);
+
+    float x1 = round(body->GetPosition().x*10000);
+    float y1 = round(body->GetPosition().y*10000);
+    float x2 = round(previousPosition.x*10000);
+    float y2 = round(previousPosition.y*10000);
+    if(x1==x2 && y1==y2){
+        constPositionCounter++;
+    }else
+        constPositionCounter=0;
+    previousPosition = body->GetPosition();
+    if(!sensors.empty()){
+        for(auto sensor : sensors)
+            sensor->update(dt);
+    }
 
 }
 
@@ -242,7 +320,7 @@ void Agent::addToCountsExitContainer(std::unordered_map<unsigned int, std::pair<
     }
 }
 
-void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightObjectsIds,std::vector<unsigned int>& a){
+void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightObjectsIds,std::vector<unsigned int>& actorsToCommunicateIds){
     using std::cout;
     using std::endl;
 
@@ -254,7 +332,7 @@ void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
         locker.unlock();
 
         std::unordered_map<unsigned int, std::pair<int,b2Vec2> > countsExitsContainer;
-        for(message : messagesList){
+        for(auto message : messagesList){
             if(message.first == messageType::EXIT){
                 addToCountsExitContainer(countsExitsContainer,message.second.first,message.second.second);
             }else if(message.first == messageType::MAIN_EXIT){
@@ -291,7 +369,7 @@ void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
             }
         }else if(mainDirection.id != 0){
             if(body)
-                moveForce = multiplyB2Vec2(normalize(mainDirection.position - body->GetPosition()),100);
+                moveForce = multiplyB2Vec2(normalize(mainDirection.position - body->GetPosition()),1000);
         }
         locker.lock();
         std::vector<unsigned int> actorsToCommunicate(actorsToCommunicateIds);
@@ -324,14 +402,14 @@ void Agent::setPassedExit(unsigned int passedExitId){
 }
 
 void Agent::resetToBeggining(){
-    m1.lock();
+    std::lock_guard<std::mutex> lock(m1);
         inSightObjectsIds.clear();
         actorsToCommunicateIds.clear();
         passedExits.clear();
         communicationBridge->clearAgentMessages(idObject);
         mainDirection = MainDirection();
         moveForce = createB2vec2(getRandomVec2(-3,3));
-    m1.unlock();
+    //locker.unlock();
 }
 
 

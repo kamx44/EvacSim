@@ -1,7 +1,7 @@
 #ifndef EXIT_H
 #define EXIT_H
-#include "Object.h"
-#include "World.h"
+//#include "Object.h"
+//#include "World.h"
 #include "Wall.h"
 
 class Exit : public Wall

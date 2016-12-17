@@ -26,7 +26,7 @@ void ObjectsContainer::deleteObject(Object *object)
            std::cout<<"lama";
         }
         object->delObject();
-        object->destroyBody();
+        //object->destroyBody();
         container.erase(object->getId());
         object->drawable=false;
         //delete object;

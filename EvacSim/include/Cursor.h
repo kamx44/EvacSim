@@ -1,7 +1,7 @@
 #ifndef CURSOR_H
 #define CURSOR_H
 
-#include "Module.h"
+
 #include "glm/common.hpp"
 #include "Object.h"
 

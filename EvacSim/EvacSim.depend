@@ -2959,9 +2959,8 @@
 	<mutex>
 	<set>
 
-1481900176 e:\evacsim\evacsim\evacsim\include\sensor.h
+1481990211 e:\evacsim\evacsim\evacsim\include\sensor.h
 	"Object.h"
-	"ObjectsContainer.h"
 	"MainDirection.h"
 	<unordered_map>
 
@@ -2972,8 +2971,7 @@
 1471551933 e:\evacsim\evacsim\evacsim\include\sector.h
 	<glm/glm.hpp>
 
-1481915069 e:\evacsim\evacsim\evacsim\include\cursor.h
-	"Module.h"
+1481931134 e:\evacsim\evacsim\evacsim\include\cursor.h
 	"glm/common.hpp"
 	"Object.h"
 
@@ -4466,7 +4464,7 @@
 	<OpenGL/gl.h>
 	<OpenGL/glu.h>
 
-1477864356 e:\evacsim\evacsim\evacsim\include\mmath.h
+1482005871 e:\evacsim\evacsim\evacsim\include\mmath.h
 	<glm/glm.hpp>
 	<Box2D/Box2D.h>
 
@@ -4511,7 +4509,7 @@
 1481899245 source:e:\evacsim\evacsim\evacsim\src\communicationbridge.cpp
 	"CommunicationBridge.h"
 
-1481899447 source:e:\evacsim\evacsim\evacsim\src\contactlistener.cpp
+1481995824 source:e:\evacsim\evacsim\evacsim\src\contactlistener.cpp
 	"Mmath.h"
 	"ContactListener.h"
 	"Cursor.h"
@@ -4549,9 +4547,7 @@
 1481900233 source:e:\evacsim\evacsim\evacsim\src\exit.cpp
 	"Exit.h"
 
-1479072877 e:\evacsim\evacsim\evacsim\include\exit.h
-	"Object.h"
-	"World.h"
+1481932393 e:\evacsim\evacsim\evacsim\include\exit.h
 	"Wall.h"
 
 1474387571 e:\evacsim\evacsim\evacsim\include\wall.h
@@ -4609,7 +4605,7 @@
 1456148420 source:e:\evacsim\evacsim\evacsim\src\image.cpp
 	"Image.h"
 
-1477864702 source:e:\evacsim\evacsim\evacsim\src\mmath.cpp
+1482006213 source:e:\evacsim\evacsim\evacsim\src\mmath.cpp
 	"Math.h"
 	<math.h>
 	<ctime>
@@ -4617,6 +4613,7 @@
 	<stdio.h>
 	<glm/glm.hpp>
 	<Box2D/Box2D.h>
+	<mutex>
 
 1481905127 source:e:\evacsim\evacsim\evacsim\src\object.cpp
 	"Object.h"
@@ -4625,7 +4622,7 @@
 	"Events.h"
 	<Box2D/Box2D.h>
 
-1481892046 source:e:\evacsim\evacsim\evacsim\src\objectscontainer.cpp
+1481993837 source:e:\evacsim\evacsim\evacsim\src\objectscontainer.cpp
 	"ObjectsContainer.h"
 	<iostream>
 
@@ -4654,13 +4651,11 @@
 	"Sector.h"
 	"iostream"
 
-1481900232 source:e:\evacsim\evacsim\evacsim\src\sensor.cpp
+1481982498 source:e:\evacsim\evacsim\evacsim\src\sensor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Sensor.h"
 	"Mmath.h"
-	"World.h"
-	"Agent.h"
 	<mutex>
 	<utility>
 
@@ -4671,7 +4666,7 @@
 	"Mmath.h"
 	"stdio.h"
 
-1481915178 source:e:\evacsim\evacsim\evacsim\src\world.cpp
+1481996030 source:e:\evacsim\evacsim\evacsim\src\world.cpp
 	"World.h"
 	"Object.h"
 	"Renderer.h"
@@ -4693,7 +4688,7 @@
 1479072647 source:e:\evacsim\evacsim\evacsim\src\maindirection.cpp
 	"MainDirection.h"
 
-1481900232 e:\evacsim\evacsim\evacsim\include\agent.h
+1481993699 e:\evacsim\evacsim\evacsim\include\agent.h
 	<string>
 	<vector>
 	<thread>
@@ -4707,7 +4702,7 @@
 	<mutex>
 	<set>
 
-1481899107 source:e:\evacsim\evacsim\evacsim\src\agent.cpp
+1482007015 source:e:\evacsim\evacsim\evacsim\src\agent.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<iostream>
@@ -4717,5 +4712,1271 @@
 	"Events.h"
 	"Mmath.h"
 	"stdio.h"
+	<typeinfo>
+	"SensorFactory.h"
+
+1481979657 e:\evacsim\evacsim\evacsim\include\sensorfactory.h
+	"CollisionSensor.h"
+	"SightSensor.h"
+	"CommunicateSensor.h"
+	"MoveSensor.h"
+	"ObstacleSensor.h"
+
+1481982902 e:\evacsim\evacsim\evacsim\include\collisionsensor.h
+	"Sensor.h"
+	<unordered_map>
+
+1481990222 e:\evacsim\evacsim\evacsim\include\sightsensor.h
+	"Sensor.h"
+	"MainDirection.h"
+	<unordered_map>
+
+1482005794 e:\evacsim\evacsim\evacsim\include\communicatesensor.h
+	"Sensor.h"
+	<mutex>
+	<unordered_map>
+
+1481982871 e:\evacsim\evacsim\evacsim\include\movesensor.h
+	"Sensor.h"
+	<unordered_map>
+
+1481982902 e:\evacsim\evacsim\evacsim\include\obstaclesensor.h
+	"Sensor.h"
+	<unordered_map>
+
+1481980558 source:e:\evacsim\evacsim\evacsim\src\collisionsensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<mutex>
+	<utility>
+	"Mmath.h"
+	"CollisionSensor.h"
+
+1482006870 source:e:\evacsim\evacsim\evacsim\src\communicatesensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<iostream>
+	<thread>
+	<utility>
+	"Mmath.h"
+	"CommunicateSensor.h"
+	"SensorFactory.h"
+
+1481980558 source:e:\evacsim\evacsim\evacsim\src\movesensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	"MoveSensor.h"
+	"Mmath.h"
+	<mutex>
+	<utility>
+
+1482007026 source:e:\evacsim\evacsim\evacsim\src\obstaclesensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	"ObstacleSensor.h"
+	"Mmath.h"
+	<mutex>
+	<utility>
+
+1482006873 source:e:\evacsim\evacsim\evacsim\src\sightsensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<mutex>
+	<utility>
+	"Mmath.h"
+	"SightSensor.h"
+	"SensorFactory.h"
+
+1481896010 source:e:\wwwww\evacsim\evacsim\main.cpp
+	"Game.h"
+	"ctime"
+	<iostream>
+	<pthread.h>
+	<thread>
+	<chrono>
+
+1481900232 e:\wwwww\evacsim\evacsim\include\game.h
+	"World.h"
+
+1481910270 e:\wwwww\evacsim\evacsim\include\world.h
+	<vector>
+	"ContactListener.h"
+
+1481900233 e:\wwwww\evacsim\evacsim\include\contactlistener.h
+	<Box2D/Box2D.h>
+	<typeinfo>
+	<iostream>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\box2d.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Common/b2Draw.h>
+	<Box2D/Common/b2Timer.h>
+	<Box2D/Collision/Shapes/b2CircleShape.h>
+	<Box2D/Collision/Shapes/b2EdgeShape.h>
+	<Box2D/Collision/Shapes/b2ChainShape.h>
+	<Box2D/Collision/Shapes/b2PolygonShape.h>
+	<Box2D/Collision/b2BroadPhase.h>
+	<Box2D/Collision/b2Distance.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<Box2D/Collision/b2TimeOfImpact.h>
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Dynamics/b2Fixture.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+	<Box2D/Dynamics/b2World.h>
+	<Box2D/Dynamics/Contacts/b2Contact.h>
+	<Box2D/Dynamics/Joints/b2DistanceJoint.h>
+	<Box2D/Dynamics/Joints/b2FrictionJoint.h>
+	<Box2D/Dynamics/Joints/b2GearJoint.h>
+	<Box2D/Dynamics/Joints/b2MotorJoint.h>
+	<Box2D/Dynamics/Joints/b2MouseJoint.h>
+	<Box2D/Dynamics/Joints/b2PrismaticJoint.h>
+	<Box2D/Dynamics/Joints/b2PulleyJoint.h>
+	<Box2D/Dynamics/Joints/b2RevoluteJoint.h>
+	<Box2D/Dynamics/Joints/b2RopeJoint.h>
+	<Box2D/Dynamics/Joints/b2WeldJoint.h>
+	<Box2D/Dynamics/Joints/b2WheelJoint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\common\b2settings.h
+	<stddef.h>
+	<assert.h>
+	<float.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\common\b2draw.h
+	<Box2D/Common/b2Math.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\common\b2math.h
+	<Box2D/Common/b2Settings.h>
+	<math.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\common\b2timer.h
+	<Box2D/Common/b2Settings.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\shapes\b2circleshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\shapes\b2shape.h
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\common\b2blockallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\b2collision.h
+	<Box2D/Common/b2Math.h>
+	<limits.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\shapes\b2edgeshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\shapes\b2chainshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\shapes\b2polygonshape.h
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\b2broadphase.h
+	<Box2D/Common/b2Settings.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/b2DynamicTree.h>
+	<algorithm>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\b2dynamictree.h
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Common/b2GrowableStack.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\common\b2growablestack.h
+	<Box2D/Common/b2Settings.h>
+	<string.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\b2distance.h
+	<Box2D/Common/b2Math.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\collision\b2timeofimpact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Distance.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\b2body.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<memory>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\b2fixture.h
+	<Box2D/Dynamics/b2Body.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\b2worldcallbacks.h
+	<Box2D/Common/b2Settings.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\b2timestep.h
+	<Box2D/Common/b2Math.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\b2world.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Common/b2BlockAllocator.h>
+	<Box2D/Common/b2StackAllocator.h>
+	<Box2D/Dynamics/b2ContactManager.h>
+	<Box2D/Dynamics/b2WorldCallbacks.h>
+	<Box2D/Dynamics/b2TimeStep.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\common\b2stackallocator.h
+	<Box2D/Common/b2Settings.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\b2contactmanager.h
+	<Box2D/Collision/b2BroadPhase.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\contacts\b2contact.h
+	<Box2D/Common/b2Math.h>
+	<Box2D/Collision/b2Collision.h>
+	<Box2D/Collision/Shapes/b2Shape.h>
+	<Box2D/Dynamics/b2Fixture.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2distancejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2joint.h
+	<Box2D/Common/b2Math.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2frictionjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2gearjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2motorjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2mousejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2prismaticjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2pulleyjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2revolutejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2ropejoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2weldjoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2wheeljoint.h
+	<Box2D/Dynamics/Joints/b2Joint.h>
+
+1482017256 source:e:\wwwww\evacsim\evacsim\src\agent.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<iostream>
+	<thread>
+	"ObjectsContainer.h"
+	"Agent.h"
+	"Events.h"
+	"Mmath.h"
+	"stdio.h"
+	<typeinfo>
+	"SensorFactory.h"
+
+1479678763 e:\wwwww\evacsim\evacsim\include\objectscontainer.h
+	"Object.h"
+	<unordered_map>
+
+1481910270 e:\wwwww\evacsim\evacsim\include\object.h
+	<math.h>
+	<set>
+	<glm/glm.hpp>
+	<glm/detail/type_mat2x2.hpp>
+	<Box2D/Box2D.h>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\glm.hpp
+	"detail/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cassert>
+	"fwd.hpp"
+	"vec2.hpp"
+	"vec3.hpp"
+	"vec4.hpp"
+	"mat2x2.hpp"
+	"mat2x3.hpp"
+	"mat2x4.hpp"
+	"mat3x2.hpp"
+	"mat3x3.hpp"
+	"mat3x4.hpp"
+	"mat4x2.hpp"
+	"mat4x3.hpp"
+	"mat4x4.hpp"
+	"trigonometric.hpp"
+	"exponential.hpp"
+	"common.hpp"
+	"packing.hpp"
+	"geometric.hpp"
+	"matrix.hpp"
+	"vector_relational.hpp"
+	"integer.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\_fixes.hpp
+	<cmath>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\fwd.hpp
+	"detail/type_int.hpp"
+	"detail/type_float.hpp"
+	"detail/type_vec.hpp"
+	"detail/type_mat.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_int.hpp
+	"setup.hpp"
+	<type_traits>
+	<cstdint>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\setup.hpp
+	<cassert>
+	<cstddef>
+	<cuda.h>
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+	<__config>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_float.hpp
+	"setup.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec.hpp
+	"precision.hpp"
+	"type_int.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\precision.hpp
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat.hpp
+	"precision.hpp"
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\vec2.hpp
+	"detail/type_vec2.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec2.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec2.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\_swizzle.hpp
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\_swizzle_func.hpp
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec2.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\vec3.hpp
+	"detail/type_vec3.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec3.hpp
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec3.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec3.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\vec4.hpp
+	"detail/type_vec4.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec4.hpp
+	"setup.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec4.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec4.inl
+	"type_vec4_sse2.inl"
+	"type_vec4_avx.inl"
+	"type_vec4_avx2.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec4_sse2.inl
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec4_avx.inl
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec4_avx2.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat2x2.hpp
+	"detail/type_mat2x2.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat2x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x2.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat2x2.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat2x3.hpp
+	"detail/type_mat2x3.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat2x3.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x3.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat2x3.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat2x4.hpp
+	"detail/type_mat2x4.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat2x4.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat2x4.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat2x4.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat3x2.hpp
+	"detail/type_mat3x2.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat3x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x2.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat3x2.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat3x3.hpp
+	"detail/type_mat3x3.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat3x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x3.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat3x3.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat3x4.hpp
+	"detail/type_mat3x4.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat3x4.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat3x4.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat3x4.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat4x2.hpp
+	"detail/type_mat4x2.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat4x2.hpp
+	"../fwd.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x2.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat4x2.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat4x3.hpp
+	"detail/type_mat4x3.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat4x3.hpp
+	"../fwd.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x3.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat4x3.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\mat4x4.hpp
+	"detail/type_mat4x4.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat4x4.hpp
+	"../fwd.hpp"
+	"type_vec4.hpp"
+	"type_mat.hpp"
+	<limits>
+	<cstddef>
+	"type_mat4x4.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_mat4x4.inl
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\trigonometric.hpp
+	"detail/func_trigonometric.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_trigonometric.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_trigonometric.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_trigonometric.inl
+	"_vectorize.hpp"
+	<cmath>
+	<limits>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\_vectorize.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec1.hpp
+	"../fwd.hpp"
+	"type_vec.hpp"
+	"_swizzle.hpp"
+	"_swizzle_func.hpp"
+	<cstddef>
+	"type_vec1.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_vec1.inl
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\exponential.hpp
+	"detail/func_exponential.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_exponential.hpp
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	<cmath>
+	"func_exponential.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_exponential.inl
+	"func_vector_relational.hpp"
+	"_vectorize.hpp"
+	<limits>
+	<cmath>
+	<cassert>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_vector_relational.hpp
+	"precision.hpp"
+	"setup.hpp"
+	"func_vector_relational.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_vector_relational.inl
+	<limits>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\common.hpp
+	"detail/func_common.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_common.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"type_int.hpp"
+	"_fixes.hpp"
+	"func_common.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_common.inl
+	"func_vector_relational.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"_vectorize.hpp"
+	<limits>
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\packing.hpp
+	"detail/func_packing.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_packing.hpp
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"func_packing.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_packing.inl
+	"func_common.hpp"
+	"type_half.hpp"
+	"../fwd.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_half.hpp
+	"setup.hpp"
+	"type_half.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\type_half.inl
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\geometric.hpp
+	"detail/func_geometric.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_geometric.hpp
+	"type_vec3.hpp"
+	"func_geometric.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_geometric.inl
+	"func_exponential.hpp"
+	"func_common.hpp"
+	"type_vec2.hpp"
+	"type_vec4.hpp"
+	"type_float.hpp"
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\matrix.hpp
+	"detail/func_matrix.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_matrix.hpp
+	"../detail/precision.hpp"
+	"../detail/setup.hpp"
+	"../detail/type_mat.hpp"
+	"../vec2.hpp"
+	"../vec3.hpp"
+	"../vec4.hpp"
+	"../mat2x2.hpp"
+	"../mat2x3.hpp"
+	"../mat2x4.hpp"
+	"../mat3x2.hpp"
+	"../mat3x3.hpp"
+	"../mat3x4.hpp"
+	"../mat4x2.hpp"
+	"../mat4x3.hpp"
+	"../mat4x4.hpp"
+	"func_matrix.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_matrix.inl
+	"../geometric.hpp"
+	<limits>
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\vector_relational.hpp
+	"detail/func_vector_relational.hpp"
+
+1482011976 e:\wwwww\evacsim\dependencies\include\glm\integer.hpp
+	"detail/func_integer.hpp"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_integer.hpp
+	"setup.hpp"
+	"precision.hpp"
+	"func_common.hpp"
+	"func_vector_relational.hpp"
+	"func_integer.inl"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\glm\detail\func_integer.inl
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_int.hpp"
+	"_vectorize.hpp"
+	<intrin.h>
+	<limits>
+
+1481993699 e:\wwwww\evacsim\evacsim\include\agent.h
+	<string>
+	<vector>
+	<thread>
+	"Sensor.h"
+	"CommunicationBridge.h"
+	"Sector.h"
+	"Object.h"
+	"World.h"
+	"Cursor.h"
+	"MainDirection.h"
+	<mutex>
+	<set>
+
+1482012424 e:\wwwww\evacsim\evacsim\include\sensor.h
+	"Object.h"
+	"MainDirection.h"
+	<unordered_map>
+
+1479074448 e:\wwwww\evacsim\evacsim\include\maindirection.h
+	"World.h"
+	"iostream"
+	"set"
+
+1481897925 e:\wwwww\evacsim\evacsim\include\communicationbridge.h
+	<unordered_map>
+	"Agent.h"
+
+1471551933 e:\wwwww\evacsim\evacsim\include\sector.h
+	<glm/glm.hpp>
+
+1481931134 e:\wwwww\evacsim\evacsim\include\cursor.h
+	"glm/common.hpp"
+	"Object.h"
+
+1481899536 e:\wwwww\evacsim\evacsim\include\events.h
+	<SDL2/SDL.h>
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\begin_code.h
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\close_code.h
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mmintrin.h>
+	<mm3dnow.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1482005871 e:\wwwww\evacsim\evacsim\include\mmath.h
+	<glm/glm.hpp>
+	<Box2D/Box2D.h>
+
+1482012403 e:\wwwww\evacsim\evacsim\include\sensorfactory.h
+	"CollisionSensor.h"
+	"SightSensor.h"
+	"CommunicateSensor.h"
+	"MoveSensor.h"
+	"ObstacleSensor.h"
+
+1481982902 e:\wwwww\evacsim\evacsim\include\collisionsensor.h
+	"Sensor.h"
+	<unordered_map>
+
+1481990222 e:\wwwww\evacsim\evacsim\include\sightsensor.h
+	"Sensor.h"
+	"MainDirection.h"
+	<unordered_map>
+
+1482005794 e:\wwwww\evacsim\evacsim\include\communicatesensor.h
+	"Sensor.h"
+	<mutex>
+	<unordered_map>
+
+1481982871 e:\wwwww\evacsim\evacsim\include\movesensor.h
+	"Sensor.h"
+	<unordered_map>
+
+1481982902 e:\wwwww\evacsim\evacsim\include\obstaclesensor.h
+	"Sensor.h"
+	<unordered_map>
+
+1481899179 source:e:\wwwww\evacsim\evacsim\src\boundary.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	"Boundary.h"
+	"Mmath.h"
+	"stdio.h"
+
+1470346227 e:\wwwww\evacsim\evacsim\include\boundary.h
+	"Object.h"
+	"World.h"
+
+1479074873 source:e:\wwwww\evacsim\evacsim\src\building.cpp
+	<glm/glm.hpp>
+	<glm/detail/type_mat2x2.hpp>
+	"Building.h"
+	"Room.h"
+	<vector>
+
+1479032660 e:\wwwww\evacsim\evacsim\include\building.h
+	"Room.h"
+
+1479074325 e:\wwwww\evacsim\evacsim\include\room.h
+	<GL/gl.h>
+	<glm/glm.hpp>
+	<vector>
+	"Sector.h"
+	"Exit.h"
+
+1481932393 e:\wwwww\evacsim\evacsim\include\exit.h
+	"Wall.h"
+
+1474387571 e:\wwwww\evacsim\evacsim\include\wall.h
+	"Object.h"
+	"World.h"
+
+1481980558 source:e:\wwwww\evacsim\evacsim\src\collisionsensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<mutex>
+	<utility>
+	"Mmath.h"
+	"CollisionSensor.h"
+
+1482006870 source:e:\wwwww\evacsim\evacsim\src\communicatesensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<iostream>
+	<thread>
+	<utility>
+	"Mmath.h"
+	"CommunicateSensor.h"
+	"SensorFactory.h"
+
+1481899245 source:e:\wwwww\evacsim\evacsim\src\communicationbridge.cpp
+	"CommunicationBridge.h"
+
+1482015406 source:e:\wwwww\evacsim\evacsim\src\contactlistener.cpp
+	"Mmath.h"
+	"ContactListener.h"
+	"Cursor.h"
+	"Agent.h"
+	"Exit.h"
+	"Object.h"
+
+1481905127 source:e:\wwwww\evacsim\evacsim\src\cursor.cpp
+	"Cursor.h"
+	"Renderer.h"
+	"Events.h"
+	"Mmath.h"
+	<Box2D/Box2D.h>
+
+1481915182 e:\wwwww\evacsim\evacsim\include\renderer.h
+	<GL/gl.h>
+	<GL/glu.h>
+	<SDL2/SDL.h>
+	<SDL2/SDL_opengl.h>
+	<vector>
+	<stdio.h>
+	<math.h>
+	<string.h>
+	<iostream>
+	<assert.h>
+	"Cursor.h"
+	"Object.h"
+	"World.h"
+	"ObjectsContainer.h"
+
+1482011975 e:\wwwww\evacsim\dependencies\include\sdl2\sdl_opengl.h
+	"SDL_config.h"
+	<windows.h>
+	<OpenGL/gl.h>
+	<GL/gl.h>
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
+
+1481899536 source:e:\wwwww\evacsim\evacsim\src\events.cpp
+	"Events.h"
+	"Renderer.h"
+
+1481900233 source:e:\wwwww\evacsim\evacsim\src\exit.cpp
+	"Exit.h"
+
+1481898778 source:e:\wwwww\evacsim\evacsim\src\game.cpp
+	"Game.h"
+	"Object.h"
+	"Renderer.h"
+	"Events.h"
+	<Box2D/Box2D.h>
+
+1479072647 source:e:\wwwww\evacsim\evacsim\src\maindirection.cpp
+	"MainDirection.h"
+
+1482006213 source:e:\wwwww\evacsim\evacsim\src\mmath.cpp
+	"Math.h"
+	<math.h>
+	<ctime>
+	<stdlib.h>
+	<stdio.h>
+	<glm/glm.hpp>
+	<Box2D/Box2D.h>
+	<mutex>
+
+1481980558 source:e:\wwwww\evacsim\evacsim\src\movesensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	"MoveSensor.h"
+	"Mmath.h"
+	<mutex>
+	<utility>
+
+1481905127 source:e:\wwwww\evacsim\evacsim\src\object.cpp
+	"Object.h"
+	"Mmath.h"
+	"Renderer.h"
+	"Events.h"
+	<Box2D/Box2D.h>
+
+1481993837 source:e:\wwwww\evacsim\evacsim\src\objectscontainer.cpp
+	"ObjectsContainer.h"
+	<iostream>
+
+1482007026 source:e:\wwwww\evacsim\evacsim\src\obstaclesensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	"ObstacleSensor.h"
+	"Mmath.h"
+	<mutex>
+	<utility>
+
+1481900393 source:e:\wwwww\evacsim\evacsim\src\renderer.cpp
+	"Renderer.h"
+
+1481900232 source:e:\wwwww\evacsim\evacsim\src\room.cpp
+	"Room.h"
+	"Wall.h"
+	"Exit.h"
+	"ObjectsContainer.h"
+	"Sector.h"
+	<iostream>
+
+1481900233 source:e:\wwwww\evacsim\evacsim\src\sector.cpp
+	"Sector.h"
+	"iostream"
+
+1481982498 source:e:\wwwww\evacsim\evacsim\src\sensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	"Sensor.h"
+	"Mmath.h"
+	<mutex>
+	<utility>
+
+1482006873 source:e:\wwwww\evacsim\evacsim\src\sightsensor.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	<mutex>
+	<utility>
+	"Mmath.h"
+	"SightSensor.h"
+	"SensorFactory.h"
+
+1479056445 source:e:\wwwww\evacsim\evacsim\src\wall.cpp
+	<GL/gl.h>
+	<GL/glu.h>
+	"Wall.h"
+	"Mmath.h"
+	"stdio.h"
+
+1482015620 source:e:\wwwww\evacsim\evacsim\src\world.cpp
+	"World.h"
+	"Object.h"
+	"Renderer.h"
+	"Events.h"
+	"Agent.h"
+	"Boundary.h"
+	"Sector.h"
+	"Building.h"
+	"CommunicationBridge.h"
+	<Box2D/Box2D.h>
+	<thread>
 	<typeinfo>
 
