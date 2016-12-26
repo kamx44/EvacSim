@@ -8,6 +8,7 @@
 #include "Mmath.h"
 #include "stdio.h"
 #include <typeinfo>
+#include <set>
 #include "SensorFactory.h"
 
 
@@ -25,7 +26,7 @@ Agent::Agent(Sector* sector,ObjectsContainer* objContainer,CommunicationBridge* 
     communicationBridge = comBridge;
     cursor = _cursor;
     communicationBridge->addThread(idObject);
-    mainDirection = MainDirection();
+    mainDirection = new MainDirection();
 
     size = 3;
     mass = rand() % 50 +50;
@@ -116,6 +117,7 @@ Agent::~Agent()
             moveSensor = NULL;
             //objContainer->deleteObject(moveSensor);
     }
+    delete mainDirection;
 }
 
 void Agent::delObject(){
@@ -123,6 +125,7 @@ void Agent::delObject(){
     if(the_thread.joinable()) the_thread.join();
     if(collisionSensor != NULL){
             collisionSensor->isAlive=false;
+            collisionSensor->drawable=false;
             collisionSensor->delObject();
 
             //World::world.DestroyJoint(collisionSensor->getBody()->GetJointList()->joint);
@@ -133,6 +136,7 @@ void Agent::delObject(){
     }
     if(communicateSensor != NULL){
             communicateSensor->isAlive=false;
+            communicateSensor->drawable=false;
             communicateSensor->delObject();
             //World::world.DestroyJoint(communicateSensor->getBody()->GetJointList()->joint);
             //communicateSensor->destroyBody();
@@ -142,6 +146,7 @@ void Agent::delObject(){
     }
     if(sightSensor != NULL){
             sightSensor->isAlive=false;
+            sightSensor->drawable=false;
             sightSensor->delObject();
             //World::world.DestroyJoint(sightSensor->getBody()->GetJointList()->joint);
             //sightSensor->destroyBody();
@@ -151,6 +156,7 @@ void Agent::delObject(){
     }
     if(moveSensor != NULL){
             moveSensor->isAlive=false;
+            moveSensor->drawable=false;
             moveSensor->delObject();
             //World::world.DestroyJoint(moveSensor->getBody()->GetJointList()->joint);
             //moveSensor->destroyBody();
@@ -182,8 +188,10 @@ void Agent::draw()
         glEnd();
         glPopMatrix ();
         if(!sensors.empty()){
-            for(auto sensor : sensors)
-                sensor->draw();
+            for(auto sensor : sensors){
+                if(sensor->drawable)
+                    sensor->draw();
+            }
         }
 
 }
@@ -240,8 +248,10 @@ void Agent::update(float dt)
         constPositionCounter=0;
     previousPosition = body->GetPosition();
     if(!sensors.empty()){
-        for(auto sensor : sensors)
-            sensor->update(dt);
+        for(auto sensor : sensors){
+            if(sensor->isAlive)
+                sensor->update(dt);
+        }
     }
 
 }
@@ -323,7 +333,7 @@ void Agent::addToCountsExitContainer(std::unordered_map<unsigned int, std::pair<
 void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightObjectsIds,std::vector<unsigned int>& actorsToCommunicateIds){
     using std::cout;
     using std::endl;
-
+    //stop_thread = true;
     while(!stop_thread){
     try{
         std::unique_lock<mutex> locker(m1, std::defer_lock);
@@ -336,11 +346,11 @@ void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
             if(message.first == messageType::EXIT){
                 addToCountsExitContainer(countsExitsContainer,message.second.first,message.second.second);
             }else if(message.first == messageType::MAIN_EXIT){
-                mainDirection.setParameters(message.second.first,message.second.second,false);
-                mainDirection.isMainExit = true;
+                mainDirection->setParameters(message.second.first,message.second.second,false);
+                mainDirection->isMainExit = true;
             }
         }
-        if(mainDirection.id==0 || mainDirection.isPassed(passedExits)){
+        if(mainDirection->id==0 || (!passedExits.empty() && mainDirection->isPassed(passedExits))){
             locker.lock(); //mozna sprawdzic ze jak bedzie iles wiecej to wtedy zmieni
                 while(!inSightObjectsIds.empty()){
                     addToCountsExitContainer(countsExitsContainer,inSightObjectsIds[0].first,inSightObjectsIds[0].second);
@@ -353,13 +363,13 @@ void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
             while(!found && exitsSize>0){
                 exit = takeTheMostCommonExit(countsExitsContainer); //inside decrease taken exit
                 bool oldExit=false;
-                for(auto passedExit : passedExits){
+                for(auto& passedExit : passedExits){
                     if(passedExit == exit.first){
                         oldExit=true;
                     }
                 }
                 if(!oldExit || exitsSize==1){
-                    mainDirection.setParameters(exit.first,exit.second,false);
+                    mainDirection->setParameters(exit.first,exit.second,false);
                     found = true;
                     exitsSize = countsExitsContainer.size();
                 }else{
@@ -367,18 +377,18 @@ void Agent::communication(std::vector<std::pair<unsigned int,b2Vec2> >& inSightO
                     continue;
                 }
             }
-        }else if(mainDirection.id != 0){
+        }else if(mainDirection->id != 0){
             if(body)
-                moveForce = multiplyB2Vec2(normalize(mainDirection.position - body->GetPosition()),1000);
+                moveForce = multiplyB2Vec2(normalize(mainDirection->position - body->GetPosition()),1000);
         }
         locker.lock();
         std::vector<unsigned int> actorsToCommunicate(actorsToCommunicateIds);
         locker.unlock();
-        while(!actorsToCommunicate.empty() && mainDirection.id!=0)  //niewiadomo czy zeruje
+        while(!actorsToCommunicate.empty() && mainDirection->id!=0)  //niewiadomo czy zeruje
         {
            locker.lock();
-           std::pair<unsigned int, b2Vec2> parka(mainDirection.id, mainDirection.position);
-           if(mainDirection.isMainExit){
+           std::pair<unsigned int, b2Vec2> parka(mainDirection->id, mainDirection->position);
+           if(mainDirection->isMainExit){
                 std::pair<messageType,std::pair<unsigned int, b2Vec2> > mes(messageType::MAIN_EXIT,parka);
                 communicationBridge->sendMessage(actorsToCommunicate.at(0),mes);
            }
@@ -407,7 +417,7 @@ void Agent::resetToBeggining(){
         actorsToCommunicateIds.clear();
         passedExits.clear();
         communicationBridge->clearAgentMessages(idObject);
-        mainDirection = MainDirection();
+        mainDirection = new MainDirection();
         moveForce = createB2vec2(getRandomVec2(-3,3));
     //locker.unlock();
 }

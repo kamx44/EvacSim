@@ -23,7 +23,7 @@ class SightSensor : public Sensor
         void removeObjectIdPos(unsigned int visibleObjectId);
         void createObstacleSensorsExit();
         void setVisibleObjectsIdPosContainer(std::vector<std::pair<unsigned int,b2Vec2> >& _visibleObjects);
-        void setParentMainDirection(MainDirection &mainDir);
+        void setParentMainDirection(MainDirection *mainDir);
         void setMainExitDirection(unsigned int mainExitId,b2Vec2 position);
     protected:
     private:

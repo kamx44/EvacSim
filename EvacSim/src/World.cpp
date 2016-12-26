@@ -6,6 +6,9 @@
 #include "Boundary.h"
 #include "Sector.h"
 #include "Building.h"
+#include "Building1.h"
+#include "Building2.h"
+#include "Building3.h"
 #include "CommunicationBridge.h"
 #include <Box2D/Box2D.h>
 #include <thread>
@@ -42,10 +45,10 @@ int World::startGame()
     objectsContainer->addObject(cursor);
     Boundary* boundaries = new Boundary();
     objectsContainer->addObject(boundaries);
-    Building* building = new Building(objectsContainer);
+    Building* building = new Building3(objectsContainer);
     building->createRooms();
     CommunicationBridge* communicationBridge = new CommunicationBridge();
-    for(int i=0; i<25; i++)
+    for(int i=0; i<60; i++)
     {
         if(Sector* freeSector = building->getFreeSector()){
             Agent* actor = new Agent(freeSector,objectsContainer,communicationBridge,cursor);
@@ -55,8 +58,8 @@ int World::startGame()
     }
 
 
-    int32 velocityIterations = 60;
-    int32 positionIterations = 20;
+    int32 velocityIterations = 600;
+    int32 positionIterations = 200;
     try
     {
         while(!endOfSimulation)
@@ -91,8 +94,8 @@ void World::moveAll()
         }
     }
    // m1.unlock();
-    if(!found)
-        endOfSimulation = true;
+    /*if(!found)
+        endOfSimulation = true;*/
 }
 
 b2Body* World::addToWorld(b2BodyDef& bodyDef){

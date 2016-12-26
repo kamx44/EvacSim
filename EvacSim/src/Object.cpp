@@ -198,7 +198,32 @@ void Object::setParameters(float dt)
  ***********************************************/
 int Object::getRandomId()
 {
-    int i = (rand() % 100000)+2;
+    /*int currentSize = idContainer.size();
+    int i = 0;
+    while (idContainer.size()<=currentSize)
+    {
+        i = (rand() % 100000)+2;
+        idContainer.insert(i);
+    }
+    return i;*/
+    unsigned int number = 0;
+    if (!idContainer.empty()){
+        number = idContainer.at(idContainer.size()-1);
+        idContainer.pop_back();
+    }
+    if(number == 0)
+        throw "Container full";
+    else{
+        //std::cout<<number<<std::endl;
+        return number;
+    }
+}
+
+void Object::returnId(unsigned int id){
+    idContainer.push_back(id);
+}
+/*
+int i = (rand() % 100000)+2;
     std::pair<std::set<int>::iterator,bool> ret;
     ret = idContainer.insert(i);
     while (ret.second==false)
@@ -206,9 +231,7 @@ int Object::getRandomId()
         i = (rand() % 100000)+2;
         ret = idContainer.insert(i);
     }
-    return i;
-}
-
+*/
 
 /********************************************//**
  * \brief Initialization of static container idContainer
@@ -216,13 +239,16 @@ int Object::getRandomId()
  * \return Container set
  *
  ***********************************************/
-std::set<int> init()
+std::vector<int> init()
 {
-    std::set<int> tmp;
-    tmp.insert(0);
+    std::vector<int> tmp;
+    for(unsigned int i = 1;i<65000;i++){
+        tmp.push_back(i);
+    }
+    //tmp.insert(0);
     return tmp;
 }
-std::set<int> Object::idContainer(init());
+std::vector<int> Object::idContainer(init());
 
 void Object::delObject()
 {

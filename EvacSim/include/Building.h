@@ -12,14 +12,15 @@ class Building
     public:
         Building(ObjectsContainer* objectsContainer);
         virtual ~Building();
-        void createRooms();
+        virtual void createRooms()= 0;
         Sector* getFreeSector();
 
     protected:
-    private:
         ObjectsContainer* objectsContainer;
         std::vector<Room*> roomsContainer;
         std::vector<pairGlm> excRoomsContainer;
+    private:
+
 
 };
 

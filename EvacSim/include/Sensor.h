@@ -49,7 +49,7 @@ class Sensor : public Object
         virtual void setParentForce(b2Vec2* parentForce){}
         virtual unsigned int getWhereIWasSend(){return 0;}
         virtual void setWhereIWasSend(unsigned int){}
-        virtual void setParentMainDirection(MainDirection &mainDir){}
+        virtual void setParentMainDirection(MainDirection *mainDir){}
         virtual void setMainExitDirection(unsigned int mainExitId,b2Vec2 position){}
 
 

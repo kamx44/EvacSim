@@ -21,14 +21,11 @@ void ObjectsContainer::deleteObject(Object *object)
 {
     auto search = container.find(object->getId());
     if(search != container.end()){
-        if(object->object_type==OBJECT_TYPE::ACTOR)
-        {
-           std::cout<<"lama";
-        }
+
         object->delObject();
         //object->destroyBody();
-        container.erase(object->getId());
-        object->drawable=false;
+        //container.erase(object->getId());
+        //object->drawable=false;
         //delete object;
         //object = NULL;
     }

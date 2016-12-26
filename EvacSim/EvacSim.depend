@@ -4969,7 +4969,7 @@
 1482011974 e:\wwwww\evacsim\dependencies\include\box2d\dynamics\joints\b2wheeljoint.h
 	<Box2D/Dynamics/Joints/b2Joint.h>
 
-1482017256 source:e:\wwwww\evacsim\evacsim\src\agent.cpp
+1482771187 source:e:\wwwww\evacsim\evacsim\src\agent.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<iostream>
@@ -4980,13 +4980,14 @@
 	"Mmath.h"
 	"stdio.h"
 	<typeinfo>
+	<set>
 	"SensorFactory.h"
 
 1479678763 e:\wwwww\evacsim\evacsim\include\objectscontainer.h
 	"Object.h"
 	<unordered_map>
 
-1481910270 e:\wwwww\evacsim\evacsim\include\object.h
+1482529109 e:\wwwww\evacsim\evacsim\include\object.h
 	<math.h>
 	<set>
 	<glm/glm.hpp>
@@ -5386,7 +5387,7 @@
 	<intrin.h>
 	<limits>
 
-1481993699 e:\wwwww\evacsim\evacsim\include\agent.h
+1482499749 e:\wwwww\evacsim\evacsim\include\agent.h
 	<string>
 	<vector>
 	<thread>
@@ -5400,12 +5401,12 @@
 	<mutex>
 	<set>
 
-1482012424 e:\wwwww\evacsim\evacsim\include\sensor.h
+1482499886 e:\wwwww\evacsim\evacsim\include\sensor.h
 	"Object.h"
 	"MainDirection.h"
 	<unordered_map>
 
-1479074448 e:\wwwww\evacsim\evacsim\include\maindirection.h
+1482769465 e:\wwwww\evacsim\evacsim\include\maindirection.h
 	"World.h"
 	"iostream"
 	"set"
@@ -5754,7 +5755,7 @@
 	"Sensor.h"
 	<unordered_map>
 
-1481990222 e:\wwwww\evacsim\evacsim\include\sightsensor.h
+1482499877 e:\wwwww\evacsim\evacsim\include\sightsensor.h
 	"Sensor.h"
 	"MainDirection.h"
 	<unordered_map>
@@ -5772,7 +5773,7 @@
 	"Sensor.h"
 	<unordered_map>
 
-1481899179 source:e:\wwwww\evacsim\evacsim\src\boundary.cpp
+1482019829 source:e:\wwwww\evacsim\evacsim\src\boundary.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"Boundary.h"
@@ -5783,14 +5784,14 @@
 	"Object.h"
 	"World.h"
 
-1479074873 source:e:\wwwww\evacsim\evacsim\src\building.cpp
+1482019526 source:e:\wwwww\evacsim\evacsim\src\building.cpp
 	<glm/glm.hpp>
 	<glm/detail/type_mat2x2.hpp>
 	"Building.h"
 	"Room.h"
 	<vector>
 
-1479032660 e:\wwwww\evacsim\evacsim\include\building.h
+1482019586 e:\wwwww\evacsim\evacsim\include\building.h
 	"Room.h"
 
 1479074325 e:\wwwww\evacsim\evacsim\include\room.h
@@ -5800,7 +5801,7 @@
 	"Sector.h"
 	"Exit.h"
 
-1481932393 e:\wwwww\evacsim\evacsim\include\exit.h
+1482071126 e:\wwwww\evacsim\evacsim\include\exit.h
 	"Wall.h"
 
 1474387571 e:\wwwww\evacsim\evacsim\include\wall.h
@@ -5815,7 +5816,7 @@
 	"Mmath.h"
 	"CollisionSensor.h"
 
-1482006870 source:e:\wwwww\evacsim\evacsim\src\communicatesensor.cpp
+1482066598 source:e:\wwwww\evacsim\evacsim\src\communicatesensor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<iostream>
@@ -5825,7 +5826,7 @@
 	"CommunicateSensor.h"
 	"SensorFactory.h"
 
-1481899245 source:e:\wwwww\evacsim\evacsim\src\communicationbridge.cpp
+1482773374 source:e:\wwwww\evacsim\evacsim\src\communicationbridge.cpp
 	"CommunicationBridge.h"
 
 1482015406 source:e:\wwwww\evacsim\evacsim\src\contactlistener.cpp
@@ -5877,7 +5878,7 @@
 	"Events.h"
 	"Renderer.h"
 
-1481900233 source:e:\wwwww\evacsim\evacsim\src\exit.cpp
+1482766041 source:e:\wwwww\evacsim\evacsim\src\exit.cpp
 	"Exit.h"
 
 1481898778 source:e:\wwwww\evacsim\evacsim\src\game.cpp
@@ -5887,7 +5888,7 @@
 	"Events.h"
 	<Box2D/Box2D.h>
 
-1479072647 source:e:\wwwww\evacsim\evacsim\src\maindirection.cpp
+1482772818 source:e:\wwwww\evacsim\evacsim\src\maindirection.cpp
 	"MainDirection.h"
 
 1482006213 source:e:\wwwww\evacsim\evacsim\src\mmath.cpp
@@ -5908,18 +5909,18 @@
 	<mutex>
 	<utility>
 
-1481905127 source:e:\wwwww\evacsim\evacsim\src\object.cpp
+1482765812 source:e:\wwwww\evacsim\evacsim\src\object.cpp
 	"Object.h"
 	"Mmath.h"
 	"Renderer.h"
 	"Events.h"
 	<Box2D/Box2D.h>
 
-1481993837 source:e:\wwwww\evacsim\evacsim\src\objectscontainer.cpp
+1482068707 source:e:\wwwww\evacsim\evacsim\src\objectscontainer.cpp
 	"ObjectsContainer.h"
 	<iostream>
 
-1482007026 source:e:\wwwww\evacsim\evacsim\src\obstaclesensor.cpp
+1482765694 source:e:\wwwww\evacsim\evacsim\src\obstaclesensor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	"ObstacleSensor.h"
@@ -5927,7 +5928,7 @@
 	<mutex>
 	<utility>
 
-1481900393 source:e:\wwwww\evacsim\evacsim\src\renderer.cpp
+1482068014 source:e:\wwwww\evacsim\evacsim\src\renderer.cpp
 	"Renderer.h"
 
 1481900232 source:e:\wwwww\evacsim\evacsim\src\room.cpp
@@ -5950,7 +5951,7 @@
 	<mutex>
 	<utility>
 
-1482006873 source:e:\wwwww\evacsim\evacsim\src\sightsensor.cpp
+1482499882 source:e:\wwwww\evacsim\evacsim\src\sightsensor.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<mutex>
@@ -5966,7 +5967,7 @@
 	"Mmath.h"
 	"stdio.h"
 
-1482015620 source:e:\wwwww\evacsim\evacsim\src\world.cpp
+1482766408 source:e:\wwwww\evacsim\evacsim\src\world.cpp
 	"World.h"
 	"Object.h"
 	"Renderer.h"
@@ -5975,8 +5976,29 @@
 	"Boundary.h"
 	"Sector.h"
 	"Building.h"
+	"Building1.h"
+	"Building2.h"
+	"Building3.h"
 	"CommunicationBridge.h"
 	<Box2D/Box2D.h>
 	<thread>
 	<typeinfo>
+
+1482068612 source:e:\wwwww\evacsim\evacsim\src\building1.cpp
+	"Building1.h"
+
+1482019574 e:\wwwww\evacsim\evacsim\include\building1.h
+	"Building.h"
+
+1482071559 source:e:\wwwww\evacsim\evacsim\src\building2.cpp
+	"Building2.h"
+
+1482019980 e:\wwwww\evacsim\evacsim\include\building2.h
+	"Building.h"
+
+1482530627 source:e:\wwwww\evacsim\evacsim\src\building3.cpp
+	"Building3.h"
+
+1482019980 e:\wwwww\evacsim\evacsim\include\building3.h
+	"Building.h"
 

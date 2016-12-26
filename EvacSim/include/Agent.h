@@ -66,7 +66,7 @@ private:
     bool stop_thread = false;
     Cursor* cursor;
     std::set<unsigned int> passedExits;
-    MainDirection mainDirection;
+    MainDirection* mainDirection;
     b2Vec2 previousPosition;
     int constPositionCounter;
 };

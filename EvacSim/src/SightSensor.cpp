@@ -177,8 +177,8 @@ void SightSensor::createObstacleSensorsExit(){
     }
 }
 
-void SightSensor::setParentMainDirection(MainDirection &mainDir){
-    mainDirection = &mainDir;
+void SightSensor::setParentMainDirection(MainDirection *mainDir){
+    mainDirection = mainDir;
 }
 
 void SightSensor::setMainExitDirection(unsigned int mainExitId,b2Vec2 position){

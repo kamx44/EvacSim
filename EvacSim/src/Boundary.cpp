@@ -13,10 +13,10 @@ Boundary::Boundary()
     fOrientation = 33;
     vertexCount = 4;
     vertices = new b2Vec2[vertexCount];
-    vertices[0].Set(-100.0f, -100.0f);
-    vertices[1].Set(-100.0f, 100.0f);
-    vertices[2].Set(100.0f, 100.0f);
-    vertices[3].Set(100.0f, -100.4f);
+    vertices[0].Set(-200.0f, -200.0f);
+    vertices[1].Set(-200.0f, 200.0f);
+    vertices[2].Set(200.0f, 200.0f);
+    vertices[3].Set(200.0f, -200.0f);
     b2ChainShape chain;
     chain.CreateLoop(vertices, 4);
     bodyDef.type = b2_staticBody;
@@ -50,10 +50,10 @@ void Boundary::draw()
     glRotatef( RADTODEG(angle) , 0, 0, 1 );
     glBegin (GL_LINE_LOOP);
     glColor3f(GLbyte(0),GLbyte(192),GLbyte(32));
-    glVertex3f(-100.0f, -100.0f,0);
-    glVertex3f(-100.0f, 100.0f,0);
-    glVertex3f(100.0f, 100.0f,0);
-    glVertex3f(100.0f, -100.0f,0);
+    glVertex3f(-200.0f, -200.0f,0);
+    glVertex3f(-200.0f, 200.0f,0);
+    glVertex3f(200.0f, 200.0f,0);
+    glVertex3f(200.0f, -200.0f,0);
 
     glEnd();
     glPopMatrix ();

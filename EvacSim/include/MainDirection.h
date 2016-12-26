@@ -14,7 +14,7 @@ class MainDirection
         bool passed;
         bool isMainExit;
         void setParameters(unsigned int, b2Vec2, bool);
-        bool isPassed(std::set<unsigned int> passedExits);
+        bool isPassed(std::set<unsigned int> &passedExits);
     protected:
 
     private:

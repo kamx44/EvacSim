@@ -14,8 +14,8 @@ void MainDirection::setParameters(unsigned int id, b2Vec2 position, bool passed)
     this->passed = passed;
 }
 
-bool MainDirection::isPassed(std::set<unsigned int> passedExits){
-    for(auto passedExit : passedExits){
+bool MainDirection::isPassed(std::set<unsigned int> &passedExits){
+    for(auto& passedExit : passedExits){
         if(passedExit == id){
             passed = true;
             return passed;

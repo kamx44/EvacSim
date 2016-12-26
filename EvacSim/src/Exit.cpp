@@ -14,6 +14,7 @@ Exit::Exit(glm::vec2 startPosition,glm::vec2 endPosition) : Wall(startPosition,e
     body->CreateFixture(&fixtureDef);
     drawable=false;
     mainExit = false;
+    std::cout<<"EXIT: ("<<startPosition.x<<","<<startPosition.y<<") id: "<<idObject<<std::endl;
 }
 
 Exit::~Exit()

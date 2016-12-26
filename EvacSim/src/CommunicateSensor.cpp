@@ -79,7 +79,8 @@ void CommunicateSensor::draw()
 
         if(!obstacleSensorContainer.empty()){
             for(auto obstacleSensor : obstacleSensorContainer){
-                obstacleSensor.second->draw();
+                if(obstacleSensor.second->drawable)
+                    obstacleSensor.second->draw();
             }
         }
 }

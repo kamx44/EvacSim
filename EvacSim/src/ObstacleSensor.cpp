@@ -35,6 +35,7 @@ ObstacleSensor::ObstacleSensor(sensorType type,OBJECT_TYPE sensor_type,glm::vec2
 
 ObstacleSensor::~ObstacleSensor()
 {
+    returnId(idObject);
 }
 void ObstacleSensor::draw()
 {
@@ -69,7 +70,7 @@ void ObstacleSensor::update(float dt)
 
 
 void ObstacleSensor::sendObstacleSensor(b2Vec2 destination){
-    b2Vec2 vel = multiplyB2Vec2(normalize(destination - body->GetPosition()),10);
+    b2Vec2 vel = multiplyB2Vec2(normalize(destination - body->GetPosition()),1);
     moveBody(vel);
 }
 

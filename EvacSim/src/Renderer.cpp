@@ -60,7 +60,7 @@ void Renderer::drawAll()
     glColor4f (1,1,1,1);
     glLoadIdentity();
     b2Vec2 pos = objectsContainer->getObjectByIndex(1)->body->GetPosition();
-    glTranslatef(-pos.x,-pos.y,-30);  //minus variables because bodies position is inverted against to opengl map
+    glTranslatef(-pos.x,-pos.y,-45);  //minus variables because bodies position is inverted against to opengl map
 
     drawAxis(0,0,0);
     glColor3f( 0.0, 1.0, 1.0 );
@@ -112,7 +112,7 @@ bool Renderer::initSDL()
 
     // Create a window. Window mode MUST include SDL_WINDOW_OPENGL for use with OpenGL.
     window = SDL_CreateWindow(
-                 "MOKA GAME",
+                 "EVAC SIM",
                  SDL_WINDOWPOS_UNDEFINED,
                  SDL_WINDOWPOS_UNDEFINED,
                  width,

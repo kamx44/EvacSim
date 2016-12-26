@@ -32,7 +32,7 @@ public:
     Object();
     virtual ~Object();
 
-    static std::set<int> idContainer;
+    static std::vector<int> idContainer;
     OBJECT_TYPE object_type;  //typ obiektu
     glm::vec2 position;             // position of the object
     glm::vec2 velocity;             // linear velocity
@@ -72,6 +72,7 @@ public:
     OBJECT_TYPE getEntityType();
     virtual void draw() = 0;
     int getRandomId();
+    void returnId(unsigned int id);
     unsigned int getId();
     void setOrientation(float angle);                             // z kata do wektora 2x2 ...
     int buildBlob(int numVertices, float radiusX, float radiusY);

@@ -58,6 +58,9 @@
 		<Unit filename="include/Agent.h" />
 		<Unit filename="include/Boundary.h" />
 		<Unit filename="include/Building.h" />
+		<Unit filename="include/Building1.h" />
+		<Unit filename="include/Building2.h" />
+		<Unit filename="include/Building3.h" />
 		<Unit filename="include/CollisionSensor.h" />
 		<Unit filename="include/CommunicateSensor.h" />
 		<Unit filename="include/CommunicationBridge.h" />
@@ -84,6 +87,9 @@
 		<Unit filename="src/Agent.cpp" />
 		<Unit filename="src/Boundary.cpp" />
 		<Unit filename="src/Building.cpp" />
+		<Unit filename="src/Building1.cpp" />
+		<Unit filename="src/Building2.cpp" />
+		<Unit filename="src/Building3.cpp" />
 		<Unit filename="src/CollisionSensor.cpp" />
 		<Unit filename="src/CommunicateSensor.cpp" />
 		<Unit filename="src/CommunicationBridge.cpp" />
